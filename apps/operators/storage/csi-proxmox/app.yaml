@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: csi-proxmox
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: proxmox-system
+  sources:
+    - repoURL: https://github.com/kubelize/platform
+      targetRevision: main
+      path: apps/operators/storage/deploy
+    - repoURL: https://github.com/kubelize/platform
+      targetRevision: main
+      path: apps/addons/storageclasses/csi-proxmox

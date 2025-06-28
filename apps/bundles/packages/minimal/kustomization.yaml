@@ -16,5 +16,4 @@ resources:
   - ../../../operators/security/teleport-kube-agent/
 
 # Storage
-  # - ../../../operators/storage/csi-proxmox/
-  # - ../../../addons/storageclasses/csi-proxmox/
+  - ../../../operators/storage/csi-proxmox/

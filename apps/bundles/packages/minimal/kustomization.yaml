@@ -5,7 +5,7 @@ resources:
 # Connectivity
   # - ../../../operators/connectivity/cilium/
   # - ../../../addons/l2advertisements/
-  # - ../../../operators/connectivity/cert-manager/
+  - ../../../operators/connectivity/cert-manager/
   # - ../../../addons/issuers/
   # - ../../../operators/connectivity/ingress-nginx/
 

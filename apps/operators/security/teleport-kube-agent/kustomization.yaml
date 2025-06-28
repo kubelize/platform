@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - app.yaml
   - teleport-join-token.yaml
+  - namespace.yaml
 patches:
   - target:
       kind: Application

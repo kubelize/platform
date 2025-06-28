@@ -13,7 +13,7 @@ resources:
 # Security
   # - ../../../operators/security/kyverno/
   # - ../../../addons/policies/base/
-  # - ../../../operators/security/teleport-kube-agent/
+  - ../../../operators/security/teleport-kube-agent/
 
 # Storage
   # - ../../../operators/storage/csi-proxmox/

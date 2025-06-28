@@ -4,7 +4,7 @@ metadata:
   name: teleport-kube-agent
   namespace: teleport-kube-agent
 spec:
-  values:        
+  valuesObject:        
     kubeClusterName: home-dhe
     apps:
       - name: dhe-pve

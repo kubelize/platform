@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
     namespace: kube-system
   sources:
-    - repoURL: https://kubernetes.github.io/ingress-nginx
+    - repoURL: https://helm.cilium.io
       targetRevision: 1.17.0
       chart: cilium
       helm:

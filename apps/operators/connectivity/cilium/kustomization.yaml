@@ -5,5 +5,5 @@ resources:
 patches:
   - target:
       kind: Application
-      name: cert-manager
+      name: cilium
     path: ../../../patches/argocd-app-settings.yaml

@@ -5,5 +5,5 @@ resources:
 patches:
   - target:
       kind: Application
-      name: cert-manager
+      name: ingress-nginx
     path: ../../../patches/argocd-app-settings.yaml

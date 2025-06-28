@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: patch
+  annotations:
+    argocd.argoproj.io/ignore-healthcheck: "true"
+spec:
+  syncPolicy:
+    # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
+    automated:
+      # Specifies if resources should be pruned during auto-syncing ( false by default ).
+      prune: true
+      # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
+      selfHeal: true
+      # Allows deleting all application resources during automatic syncing ( false by default ).
+      allowEmpty: false
+    syncOptions:
+      - CreateNamespace=true
+      # Enables server-side apply for kubectl apply ( false by default ).
+      - ServerSideApply=true
+      # disables resource validation (equivalent to 'kubectl apply --validate=false') ( true by default ).
+      - Validate=false
+      # Supported policies are background, foreground and orphan.
+      - PrunePropagationPolicy=foreground
+      # Allow the ability for resource pruning to happen as a final, implicit wave of a sync operation
+      - PruneLast=false
+      # Apply only resources that are out of sync with the cluster
+      - ApplyOutOfSyncOnly=true
+      - FailOnSharedResource=true

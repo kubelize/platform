@@ -1,0 +1,10 @@
+        apiVersion: source.toolkit.fluxcd.io/v1
+        kind: GitRepository
+        metadata:
+          name: csi-proxmox
+          namespace: proxmox-system
+        spec:
+          interval: 30s
+          url: https://github.com/kubelize/kube-clusters
+          ref:
+            branch: main

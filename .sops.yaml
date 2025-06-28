@@ -1,0 +1,4 @@
+creation_rules:
+  - pgp: "4C460A5D1A91A52F3E204754CA746D9D4345890B"
+    encrypted_regex: '^(data|stringData|secrets)$'
+    path_regex: '.*'

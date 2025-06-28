@@ -1,0 +1,13 @@
+        apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+        kind: Kustomization
+        metadata:
+          name: csi-proxmox
+          namespace: proxmox-system
+        spec:
+          interval: 5m0s
+          path: ./apps/operators/storage/csi-proxmox/deploy
+          prune: true
+          sourceRef:
+            kind: GitRepository
+            name: csi-proxmox
+            namespace: proxmox-system

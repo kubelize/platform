@@ -1,0 +1,15 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: proxmox
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+parameters:
+  csi.storage.k8s.io/fstype: ext4
+  storage: CHANGE_ME
+  cache: writeback
+  ssd: "true"
+provisioner: csi.proxmox.sinextra.dev
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer

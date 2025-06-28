@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: teleport-kube-agent
+  namespace: teleport-kube-agent
+spec:
+  interval: 1h0m0s
+  url: https://charts.releases.teleport.dev
+  timeout: 60s

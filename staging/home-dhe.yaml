@@ -1,0 +1,27 @@
+kind: Cluster
+name: home-dhe
+talos:
+  version: v1.8.4
+kubernetes:
+  version: 1.30.9
+patches:
+  - name: cni
+    file: patches/cni.yaml
+---
+kind: ControlPlane
+machineClass:
+  name: dhe-control-planes
+  size: 3
+patches:
+  - name: cilium
+    file: patches/cilium.yaml
+  - name: fluxcd
+    file: patches/fluxcd.yaml
+  - name: bootstrap
+    file: bootstraps/home-dhe.yaml
+---
+kind: Workers
+name: workers
+machineClass:
+  name: dhe-workers
+  size: 3

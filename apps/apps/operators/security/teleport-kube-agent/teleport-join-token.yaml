@@ -1,0 +1,40 @@
+apiVersion: v1
+data:
+    auth-token: ENC[AES256_GCM,data:8U6oqrpsYLze2IAAK7M0heLmceaUeNlDxzZgMYlT9xPeScWrPBB4pNoj6gA=,iv:6srI1PSSyXIdpQ7JODI8+SQLYOQqWMVrDTnIl1srWPs=,tag:6GODyPcsbYi1DE/Ilj0bKw==,type:str]
+kind: Secret
+metadata:
+    name: teleport-kube-agent-join-token
+    namespace: teleport-kube-agent
+type: Opaque
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2025-06-07T15:24:17Z"
+    mac: ENC[AES256_GCM,data:dTKCxgQbobcfkYQa4G2lRfeRTzF5zUmqcdUbfBFgup3tpe0A/VbaVEVKXb1St4Cpy0/Q3VQ7qnNiVERbvE5io1jUEnjMacZiU/OV3fvFlvO6SW5FcrsOy3W2VJULN30tzu9zFb5MmuVShHCplT4Vcuk1L7qWabUFs2lyJ4Zuh0E=,iv:XT9wfeJnL/LURVhWFWTkMMN4yMEISno8rQerEQPlj2A=,tag:GjpKCHsNfm71uPfAiv35NA==,type:str]
+    pgp:
+        - created_at: "2025-06-07T15:24:17Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMAwFcjQZ1ckKcARAAnHnzWJYaq9ArYTGMj2b8LHDiaAxcJ3UleAmxtIxUgx1R
+            vvXBWpl8zZiXFfsbkBI4C5qKM0xnIvhUCt8SFnHSypzPDWFGrxmOeQb42/GmJdJN
+            zL+JkOlfGpgHdL+jopZKmzuliWo3UYEM57V6atpdIR1fL05sFZHnO2MgYHsqUEWd
+            SO+9KYvlIUmkArnr3mw7LS1jXrjnKcRo1bod5ubmFkjx3IH5DCKERuciJwSDlaJq
+            N7DFJ0rQ9CHvM3vWoHMxRGtCEchHyGwQYVH+MDu1YkJgn+2ysV6tQ7kzmaedwBtA
+            rPBvtWCTZi2HFNgEfByU/MPa6FWw1uq0bjTK4ynHy5YypXokgzMxszGSBzo5Fsf/
+            mroNP/tR7iw6nb5miW/Rjf5yw/ngrTY9yhKHW8oXbWaK0/pBYx9E4rDF29AYs2y5
+            Y1PFJHoNoEF/BC/a9NodXfIkGsN2JH3GQtfABik1F7YkIt1EBLlCWsoo1o6OLEZw
+            queRwrwFcXR9mT1MRwFbV+ZG0vSyoISPvOY3GmzPDE/ohbhxwt0mtoopypoJz+lc
+            fja4pvE4e+vHGRchYaHm55VcMv8Y3vQxBdo8Kye977eGtBH4BR5ggsi17AzlRCzK
+            HSkAQaaCI45WMHdnA/pAg+U1dX0xR3Vd83H5x3ntBqRx2LD3C+tZwf7cP5uwyJjU
+            ZgEJAhCGqpZTbwPaP+ySH92/FvYK9e18yBzBOYaKhaUbQmVu3HJtxWeJxHjLtLmO
+            SZbdX/escOVVozwfG8lbjpoH+kXuIA1+M6RWojrW43p0W3Ia6koyYdJKrHfSFoe5
+            edv0nx6f1g==
+            =jolp
+            -----END PGP MESSAGE-----
+          fp: 4C460A5D1A91A52F3E204754CA746D9D4345890B
+    encrypted_regex: ^(data|stringData|secrets)$
+    version: 3.9.4

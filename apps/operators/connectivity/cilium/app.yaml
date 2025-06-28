@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cilium
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  sources:
+    - repoURL: https://kubernetes.github.io/ingress-nginx
+      targetRevision: 1.17.0
+      chart: cilium
+      helm:
+        parameters: []
+        valuesObject:
+          kubeProxyReplacement: true
+          ipam:
+            mode: kubernetes
+          podSecurityContext:
+            # -- AppArmorProfile options for the `cilium-agent` and init containers
+            appArmorProfile:
+              type: "Unconfined"
+          securityContext:
+            capabilities:
+              ciliumAgent:
+                - CHOWN
+                - KILL
+                - NET_ADMIN
+                - NET_RAW
+                - IPC_LOCK
+                - SYS_ADMIN
+                - SYS_RESOURCE
+                - DAC_OVERRIDE
+                - FOWNER
+                - SETUID
+                - SETGID
+              cleanCiliumState:
+                - NET_ADMIN
+                - SYS_ADMIN
+                - SYS_RESOURCE
+          cgroup:
+            hostRoot: /sys/fs/cgroup
+            autoMount:
+              enabled: false
+          externalIPs:
+            enabled: true
+          l2announcements:
+            enabled: true
+          # Enable Cilium Ingress Controller
+          ingressController:
+            enabled: false
+          # Use KubePrism to access cluster API
+          k8sServiceHost: localhost
+          k8sServicePort: 7445
+          # Enable Hubble
+          hubble:
+            relay:
+              enabled: true
+            ui:
+              enabled: true
+    - repoURL: https://github.com/kubelize/platform
+      targetRevision: main
+      path: apps/operators/connectivity/cilium/addons

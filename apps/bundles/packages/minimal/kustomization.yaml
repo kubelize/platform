@@ -6,8 +6,7 @@ resources:
   # - ../../../operators/connectivity/cilium/
   # - ../../../addons/l2advertisements/
   - ../../../operators/connectivity/cert-manager/
-  # - ../../../addons/issuers/
-  # - ../../../operators/connectivity/ingress-nginx/
+  - ../../../operators/connectivity/ingress-nginx/
 
 # GitOps
   - ../../../operators/gitops/argocd/

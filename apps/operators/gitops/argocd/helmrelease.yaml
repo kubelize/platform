@@ -16,6 +16,7 @@ spec:
   values:
     crds:
       enabled: true
-    params:
-      server.insecure: true
-      server.disable.auth: true
+    configs:
+      params:
+        server.insecure: true
+        server.disable.auth: true

@@ -12,6 +12,3 @@ spec:
     - repoURL: https://github.com/kubelize/platform
       targetRevision: main
       path: apps/operators/storage/csi-proxmox/deploy
-    - repoURL: https://github.com/kubelize/platform
-      targetRevision: main
-      path: apps/addons/storageclasses/csi-proxmox

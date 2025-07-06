@@ -17,3 +17,4 @@ resources:
 
 # Storage
   - ../../../operators/storage/csi-proxmox/
+  - ../../../addons/storageclasses/csi-proxmox/

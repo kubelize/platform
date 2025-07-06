@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 
   - ../packages/minimal/
-  # - ../packages/tenancy/
+  - ../packages/tenancy/

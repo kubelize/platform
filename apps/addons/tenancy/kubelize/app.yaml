@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tenants
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/kubelize/tenants
+      targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: tenants

@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crossplane
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: crossplane-system
+  source:
+    repoURL: https://charts.crossplane.io/stable
+    targetRevision: 1.19.0
+    chart: crossplane
+    helm:
+      valuesObject:
+        resourcesCrossplane:
+          limits:
+            cpu: 500m
+            memory: 1024Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+
+        resourcesRBACManager:
+          limits:
+            cpu: 100m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+
+        securityContextCrossplane:
+          seccompProfile:
+            type: RuntimeDefault
+          runAsNonRoot: true
+          # nobody
+          runAsUser: 65534
+          runAsGroup: 65534
+          capabilities:
+            drop:
+              - ALL
+
+        securityContextRBACManager:
+          seccompProfile:
+            type: RuntimeDefault
+          runAsNonRoot: true
+          # nobody
+          runAsUser: 65534
+          runAsGroup: 65534
+          capabilities:
+            drop:
+              - ALL
+
+        podSecurityContextCrossplane:
+          runAsNonRoot: true
+          # nobody
+          runAsUser: 65534
+          runAsGroup: 65534
+
+        podSecurityContextRBACManager:
+          runAsNonRoot: true
+          # nobody
+          runAsUser: 65534
+          runAsGroup: 65534

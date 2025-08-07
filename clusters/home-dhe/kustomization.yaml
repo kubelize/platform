@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 
   - ../../apps/bundles/mizu-r1/
+  - ../../apps/bundles/packages/crossplane/
 
   - config/
 

@@ -74,7 +74,7 @@ spec:
             metadata:
               name: provider-kubernetes
             spec:
-              package: xpkg.upbound.io/upbound/crossplane-contrib/provider-kubernetes:v0.15.0
+              package: xpkg.upbound.io/crossplane-contrib/provider-kubernetes:v0.15.0
               runtimeConfigRef:
                 name: provider-kubernetes
           - apiVersion: pkg.crossplane.io/v1
@@ -82,7 +82,7 @@ spec:
             metadata:
               name: provider-vault
             spec:
-              package: xpkg.upbound.io/upbound/upbound/provider-vault:v2.2.1
+              package: xpkg.upbound.io/upbound/provider-vault:v2.2.1
               runtimeConfigRef:
                 name: default
           ##### Functions #####

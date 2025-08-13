@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "crossplane-providers"
+  namespace: "argocd"
+  labels:
+    app: "crossplane"
+spec:
+  destination:
+    namespace: "crossplane-system"
+    server: "https://kubernetes.default.svc"
+  source:
+    repoURL: https://bedag.github.io/helm-charts
+    targetRevision: 2.0.0
+    chart: raw
+    helm:
+      valuesObject:
+        resources:
+          ##### DeploymentRuntimeConfigs #####
+          - apiVersion: pkg.crossplane.io/v1
+            kind: Provider
+            metadata:
+              name: provider-vault
+            spec:
+              package: xpkg.upbound.io/upbound/upbound/provider-vault:v2.2.1
+              runtimeConfigRef:
+                name: default
+          ##### Functions #####
+          - apiVersion: pkg.crossplane.io/v1
+            kind: Function
+            metadata:
+              name: function-go-templating
+            spec:
+              package: xpkg.upbound.io/crossplane-contrib/function-go-templating:v0.8.0
+              runtimeConfigRef:
+                name: default
+          - apiVersion: pkg.crossplane.io/v1beta1
+            kind: Function
+            metadata:
+              name: function-auto-ready
+            spec:
+              package: xpkg.upbound.io/crossplane-contrib/function-auto-ready:v0.3.0
+              runtimeConfigRef:
+                name: default
+          - apiVersion: pkg.crossplane.io/v1beta1
+            kind: Function
+            metadata:
+              name: function-patch-and-transform
+            spec:
+              package: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.2.1
+              runtimeConfigRef:
+                name: default

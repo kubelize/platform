@@ -4,4 +4,7 @@ metadata:
   name: patch
 spec:
   destination:
-    namespace: a02-reserved
+    namespace: a01-reserved
+  source:
+    helm:
+      releaseName: a01-vcluster

@@ -5,3 +5,6 @@ metadata:
 spec:
   destination:
     namespace: a01-reserved
+  source:
+    helm:
+      releaseName: a01-vcluster

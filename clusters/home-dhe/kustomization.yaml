@@ -18,7 +18,3 @@ patches:
       kind: Application
       name: teleport-kube-agent
     path: patches/teleport-app-configs.yaml
-  - target:
-      kind: Application
-      name: tenants
-    path: patches/tenants.yaml

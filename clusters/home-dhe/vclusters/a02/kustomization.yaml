@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../../../apps/operators/scheduling/loft/vcluster/
 
-prefix: a02-
+namePrefix: "a02-"
 
 patches:
   - target:

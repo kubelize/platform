@@ -9,5 +9,5 @@ patches:
   - target:
       kind: Application
       name: vcluster
-    path: ../../../patches/argocd-app-settings.yaml
+    path: patches/vcluster.yaml
 

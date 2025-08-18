@@ -8,7 +8,7 @@ resources:
   - ../../../operators/connectivity/ingress-nginx/
 
 # Security
-  - ../../../operators/security/kyverno/
+  # - ../../../operators/security/kyverno/
   - ../../../operators/security/teleport-kube-agent/
 
 # Storage

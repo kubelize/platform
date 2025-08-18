@@ -7,9 +7,6 @@ resources:
   - ../../../operators/connectivity/cert-manager/
   - ../../../operators/connectivity/ingress-nginx/
 
-# GitOps
-  - ../../../operators/gitops/argocd/
-
 # Security
   - ../../../operators/security/kyverno/
   - ../../../operators/security/teleport-kube-agent/

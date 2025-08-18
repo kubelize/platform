@@ -11,8 +11,7 @@ resources:
   - ../../../operators/gitops/argocd/
 
 # Security
-  # - ../../../operators/security/kyverno/
-  # - ../../../addons/policies/base/
+  - ../../../operators/security/kyverno/
   - ../../../operators/security/teleport-kube-agent/
 
 # Storage

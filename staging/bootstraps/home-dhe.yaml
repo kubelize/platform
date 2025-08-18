@@ -5,6 +5,24 @@ cluster:
         apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
         kind: Kustomization
         metadata:
+          name: argocd
+          namespace: flux-system
+        spec:
+          interval: 5m0s
+          path: ./clusters/home-dhe/argocd/
+          prune: true
+          decryption:
+            provider: sops
+            secretRef:
+              name: sops-gpg
+          sourceRef:
+            kind: GitRepository
+            name: platform
+            namespace: flux-system
+        ---
+        apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+        kind: Kustomization
+        metadata:
           name: platform
           namespace: flux-system
         spec:
@@ -19,6 +37,8 @@ cluster:
             kind: GitRepository
             name: platform
             namespace: flux-system
+          dependsOn:
+            - name: argocd
         ---
         apiVersion: source.toolkit.fluxcd.io/v1
         kind: GitRepository

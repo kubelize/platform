@@ -7,4 +7,4 @@ patches:
   - target:
       kind: Application
       name: csi-proxmox
-    path: ../../../patches/argocd-app-settings.yaml
+    path: ../../../../common/patches/argocd-app-settings.yaml

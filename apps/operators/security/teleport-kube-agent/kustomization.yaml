@@ -8,4 +8,4 @@ patches:
   - target:
       kind: Application
       name: teleport-kube-agent
-    path: ../../../patches/argocd-app-settings.yaml
+    path: ../../../../common/patches/argocd-app-settings.yaml

@@ -7,8 +7,8 @@ patches:
   - target:
       kind: Application
       name: crossplane
-    path: ../../../patches/argocd-app-settings.yaml
+    path: ../../../../common/patches/argocd-app-settings.yaml
   - target:
       kind: Application
       name: crossplane-providers
-    path: ../../../patches/argocd-app-settings.yaml
+    path: ../../../../common/patches/argocd-app-settings.yaml

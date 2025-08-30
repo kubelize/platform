@@ -9,4 +9,4 @@ patches:
   - target:
       kind: Application
       name: projects
-    path: ../../common/patches/argocd-app-settings.yaml
+    path: ../../../common/patches/argocd-app-settings.yaml

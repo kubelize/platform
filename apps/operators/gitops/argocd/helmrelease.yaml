@@ -21,4 +21,4 @@ spec:
         server.insecure: true
         server.disable.auth: true
       cm:
-        kustomize.buildOptions: --load_restrictor none
+        kustomize.buildOptions: --load-restrictor LoadRestrictionsNone .

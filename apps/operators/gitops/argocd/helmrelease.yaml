@@ -20,7 +20,5 @@ spec:
       params:
         server.insecure: true
         server.disable.auth: true
-    repoServer:
-      extraArgs:
-        - --kustomize-options
-        - --load-restrictor=LoadRestrictionsNone
+      cm:
+        kustomize.buildOptions: --load-restrictor LoadRestrictionsNone

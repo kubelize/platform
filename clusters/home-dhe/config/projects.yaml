@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/kubelize/projects
-      path: 
+      path: environments/clusters/home-dhe
       targetRevision: main
   destination:
     server: https://kubernetes.default.svc

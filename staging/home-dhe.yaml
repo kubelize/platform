@@ -3,7 +3,7 @@ name: home-dhe
 talos:
   version: v1.8.4
 kubernetes:
-  version: 1.30.9
+  version: 1.31.13
 patches:
   - name: cni
     file: patches/cni.yaml

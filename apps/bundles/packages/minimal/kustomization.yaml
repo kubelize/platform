@@ -7,6 +7,9 @@ resources:
   - ../../../operators/connectivity/cert-manager/
   - ../../../operators/connectivity/ingress-nginx/
 
+# Observability
+  - ../../../operators/observability/metrics-server/
+
 # Security
   # - ../../../operators/security/kyverno/
   - ../../../operators/security/teleport-kube-agent/

@@ -6,6 +6,7 @@ metadata:
   labels:
     name: "metrics-server"
 spec:
+  project: default
   destination:
     # Must Run in Kube-System
     namespace: kube-system

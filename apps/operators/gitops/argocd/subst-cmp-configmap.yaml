@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-subst-cmp
+  labels:
+    app.kubernetes.io/name: argocd-subst-cmp
+    app.kubernetes.io/part-of: argocd
+  namespace: argocd
+data:
+  plugin.yaml: |
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      # The name of the plugin is ignored, but must be present.
+      # The discover function should evaluate to a list of files that match the plugin.
+      # https://github.com/argoproj/argo-cd/discussions/8216
+      name: subst
+    spec:
+      version: v1.0
+      discover:
+        # Instead of a fixed path, we now search for subst.yaml files dynamically.
+        find:
+          glob: "**/subst.yaml"
+      generate:
+        command:
+          - /usr/local/bin/subst
+        args:
+          - render
+          - "."
+          - --env-regex
+          - "^ARGOCD_ENV_.*$"
+          - --kubeconfig
+          - "/etc/kubernetes/kubeconfig"
+          - --kustomize-options
+          - --load-restrictor LoadRestrictionsNone

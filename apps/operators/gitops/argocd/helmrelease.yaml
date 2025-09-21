@@ -27,7 +27,7 @@ spec:
     repoServer:
       extraContainers:
         - name: gomplate-cmp
-          image: kubelize/gomplate-cmp:latest
+          image: kubelize/gomplate-cmp:0.0.1
           args:
             - /var/run/argocd/argocd-cmp-server
             - --loglevel

@@ -1,0 +1,5 @@
+cluster:
+  name: home-dhe
+  settings:
+    defaultIngressClass: nginx
+    defaultStorageClass: proxmox

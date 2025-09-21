@@ -95,7 +95,7 @@ spec:
             - /var/run/argocd/argocd-cmp-server
             - --loglevel
             - info
-          image: kubelize/subst-cmp:v1.0.1
+          image: kubelize/subst-cmp:v1.0.2
           imagePullPolicy: Always
           env:
             # has to be equal or greater than 'server.repo.server.timeout.seconds' & 'controller.repo.server.timeout.seconds'

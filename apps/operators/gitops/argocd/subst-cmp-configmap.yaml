@@ -31,8 +31,5 @@ data:
           - "^ARGOCD_ENV_.*$"
           - --kubeconfig
           - "/etc/kubernetes/kubeconfig"
-        env:
-          - name: KUSTOMIZE_PLUGIN_HOME
-            value: /etc/kustomize/plugin
-          - name: KUSTOMIZE_BUILD_OPTIONS
-            value: "--load-restrictor LoadRestrictionsNone"
+          - --kustomize-build-options
+          - "--load-restrictor LoadRestrictionsNone"

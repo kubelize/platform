@@ -22,3 +22,27 @@ spec:
         server.disable.auth: true
       cm:
         kustomize.buildOptions: --load-restrictor LoadRestrictionsNone
+        
+    # Add gomplate CMP to the repo server
+    repoServer:
+      extraContainers:
+        - name: gomplate-cmp
+          image: kubelize/gomplate-cmp:latest
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 999
+            runAsGroup: 999
+          volumeMounts:
+            - name: var-files
+              mountPath: /var/run/argocd
+            - name: plugins
+              mountPath: /home/argocd/cmp-server/plugins
+            - name: gomplate-cmp-tmp
+              mountPath: /tmp
+          env:
+            - name: ARGOCD_EXEC_TIMEOUT
+              value: "90s"
+      
+      volumes:
+        - name: gomplate-cmp-tmp
+          emptyDir: {}

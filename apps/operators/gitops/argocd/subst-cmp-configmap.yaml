@@ -31,5 +31,5 @@ data:
           - "^ARGOCD_ENV_.*$"
           - --kubeconfig
           - "/etc/kubernetes/kubeconfig"
-          - --kustomize-options
-          - --load-restrictor LoadRestrictionsNone
+      kustomize:
+        buildOptions: --load-restrictor LoadRestrictionsNone

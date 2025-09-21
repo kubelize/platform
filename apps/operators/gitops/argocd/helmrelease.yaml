@@ -28,8 +28,10 @@ spec:
       extraContainers:
         - name: gomplate-cmp
           image: kubelize/gomplate-cmp:latest
-          command: ["/entrypoint.sh"]
-          args: ["/usr/local/bin/argocd", "cmp-server"]
+          args:
+            - /var/run/argocd/argocd-cmp-server
+            - --loglevel
+            - info
           securityContext:
             runAsNonRoot: true
             runAsUser: 999

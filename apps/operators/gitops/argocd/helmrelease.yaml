@@ -22,12 +22,14 @@ spec:
         server.disable.auth: true
       cm:
         kustomize.buildOptions: --load-restrictor LoadRestrictionsNone
-        
+
     # Add gomplate CMP to the repo server
     repoServer:
       extraContainers:
         - name: gomplate-cmp
           image: kubelize/gomplate-cmp:latest
+          command: ["/entrypoint.sh"]
+          args: ["/usr/local/bin/argocd", "cmp-server"]
           securityContext:
             runAsNonRoot: true
             runAsUser: 999

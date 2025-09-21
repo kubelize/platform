@@ -22,19 +22,12 @@ spec:
         server.disable.auth: true
       cm:
         kustomize.buildOptions: --load-restrictor LoadRestrictionsNone
-
-      crds:
-          install: true
-      global:
-        securityContext:
-          runAsNonRoot: true
-          seccompProfile:
-            type: RuntimeDefault
-        cm:
-          create: false
-        rbac:
-          create: false
-      controller:
+    global:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+    controller:
         containerSecurityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -43,98 +36,98 @@ spec:
           readOnlyRootFilesystem: true
           runAsUser: 1001
           runAsGroup: 1001
-      server:
-        containerSecurityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - all
-          readOnlyRootFilesystem: true
-          runAsUser: 1001
-          runAsGroup: 1001
-      dex:
-        enabled: false
-        containerSecurityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - all
-          readOnlyRootFilesystem: true
-          runAsUser: 1001
-          runAsGroup: 1001
-      applicationSet:
-        containerSecurityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - all
-          readOnlyRootFilesystem: true
-          runAsUser: 1001
-          runAsGroup: 1001
-        allowAnyNamespace: true
-      notifications:
-        enabled: false
-      repoServer:
-        containerSecurityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - all
-          readOnlyRootFilesystem: true
-          runAsUser: 1001
-          runAsGroup: 1001
-        volumes:
-          - emptyDir: {}
-            name: custom-tools
-          - emptyDir: {}
-            name: subst-tmp
-          - emptyDir: {}
-            name: subst-kubeconfig
-          - name: subst-cmp-plugin
-            configMap:
-              name: argocd-subst-cmp
-              items:
-                - key: plugin.yaml
-                  path: plugin.yaml
-        extraContainers:
-          - name: cmp-subst
-            args:
-              - /var/run/argocd/argocd-cmp-server
-              - --loglevel
-              - info
-            image: kubelize/subst-cmp:v1.0.1
-            imagePullPolicy: Always
-            env:
-              # has to be equal or greater than 'server.repo.server.timeout.seconds' & 'controller.repo.server.timeout.seconds'
-              - name: ARGOCD_EXEC_TIMEOUT
-                value: "5m30s"
-            securityContext:
-              allowPrivilegeEscalation: false
-              capabilities:
-                drop:
-                  - all
-              readOnlyRootFilesystem: true
-              runAsUser: 1001
-              runAsGroup: 1001
-            resources:
-              limits:
-                cpu: 6000m
-                memory: 4096Mi
-              requests:
-                cpu: 1500m
-                memory: 128Mi
-            volumeMounts:
-              - mountPath: /var/run/argocd
-                name: var-files
-              - mountPath: /home/argocd/cmp-server/plugins
-                name: plugins
-              # Starting with v2.4, do NOT mount the same tmp volume as the repo-server container. The filesystem separation helps
-              # mitigate path traversal attacks.
-              - mountPath: /tmp
-                name: subst-tmp
-              - mountPath: /etc/kubernetes/
-                name: subst-kubeconfig
-              - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-                subPath: plugin.yaml
-                name: subst-cmp-plugin
+    server:
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - all
+        readOnlyRootFilesystem: true
+        runAsUser: 1001
+        runAsGroup: 1001
+    dex:
+      enabled: false
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - all
+        readOnlyRootFilesystem: true
+        runAsUser: 1001
+        runAsGroup: 1001
+    applicationSet:
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - all
+        readOnlyRootFilesystem: true
+        runAsUser: 1001
+        runAsGroup: 1001
+      allowAnyNamespace: true
+    notifications:
+      enabled: false
+    repoServer:
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - all
+        readOnlyRootFilesystem: true
+        runAsUser: 1001
+        runAsGroup: 1001
+      volumes:
+        - emptyDir: {}
+          name: custom-tools
+        - emptyDir: {}
+          name: subst-tmp
+        - emptyDir: {}
+          name: subst-kubeconfig
+        - name: subst-cmp-plugin
+          configMap:
+            name: argocd-subst-cmp
+            items:
+              - key: plugin.yaml
+                path: plugin.yaml
+      extraContainers:
+        - name: cmp-subst
+          args:
+            - /var/run/argocd/argocd-cmp-server
+            - --loglevel
+            - info
+          image: kubelize/subst-cmp:v1.0.1
+          imagePullPolicy: Always
+          env:
+            # has to be equal or greater than 'server.repo.server.timeout.seconds' & 'controller.repo.server.timeout.seconds'
+            - name: ARGOCD_EXEC_TIMEOUT
+              value: "5m30s"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+            readOnlyRootFilesystem: true
+            runAsUser: 1001
+            runAsGroup: 1001
+          resources:
+            limits:
+              cpu: 6000m
+              memory: 4096Mi
+            requests:
+              cpu: 1500m
+              memory: 128Mi
+          volumeMounts:
+            - mountPath: /var/run/argocd
+              name: var-files
+            - mountPath: /home/argocd/cmp-server/plugins
+              name: plugins
+            # Starting with v2.4, do NOT mount the same tmp volume as the repo-server container. The filesystem separation helps
+            # mitigate path traversal attacks.
+            - mountPath: /tmp
+              name: subst-tmp
+            - mountPath: /etc/kubernetes/
+              name: subst-kubeconfig
+            - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+              subPath: plugin.yaml
+              name: subst-cmp-plugin
 

@@ -9,6 +9,7 @@ resources:
 
 # Observability
   - ../../../operators/observability/metrics-server/
+  - ../../../operators/observability/kube-prometheus-stack/
 
 # Security
   # - ../../../operators/security/kyverno/

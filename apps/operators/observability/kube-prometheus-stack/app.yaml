@@ -1,0 +1,70 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    # Must Run in Kube-System
+    namespace: observability-system
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 69.2.0
+    chart: kube-prometheus-stack
+    helm:
+      valuesObject:
+        kube-prometheus-stack:
+          # NOTE: These must be set manually to the control plane IP addresses
+          kubeEtcd:
+           endpoints:
+             - "{{ .cluster.etcdEndpoints.replica1 }}"
+             - "{{ .cluster.etcdEndpoints.replica2 }}"
+             - "{{ .cluster.etcdEndpoints.replica3 }}"
+          kubeControllerManager:
+            service:
+              selector:
+                k8s-app: kube-controller-manager
+          kubeScheduler:
+            service:
+              selector:
+                k8s-app: kube-scheduler
+          alertmanager:
+            alertmanagerSpec:
+              forceEnableClusterMode: true
+              useExistingSecret: true
+              secrets:
+                - alertmanager-config
+              configSecret: alertmanager-config
+              storage:
+                volumeClaimTemplate:
+                  spec:
+                    storageClassName: proxmox
+                    accessModes:
+                      - ReadWriteOnce
+                    resources:
+                      requests:
+                        storage: 10Gi
+          prometheus:
+            prometheusSpec:
+              retention: 30d
+              storageSpec:
+                volumeClaimTemplate:
+                  spec:
+                    storageClassName: "{{ .cluster.settings.defaultStorageClass }}"
+                    accessModes:
+                      - ReadWriteOnce
+                    resources:
+                      requests:
+                        storage: 150Gi
+          grafana:
+            grafana.ini:
+              auth:
+                # testing auth configurations currently
+                disable_login_form: true
+                disable_signout_menu: true
+              auth.basic:
+                enabled: true
+              auth.anonymous:
+                enabled: true

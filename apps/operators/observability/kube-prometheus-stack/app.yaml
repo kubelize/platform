@@ -18,9 +18,9 @@ spec:
         # NOTE: These must be set manually to the control plane IP addresses
         kubeEtcd:
           endpoints:
-            - "{{ .cluster.etcdEndpoints.replica1 }}"
-            - "{{ .cluster.etcdEndpoints.replica2 }}"
-            - "{{ .cluster.etcdEndpoints.replica3 }}"
+            - "{{ .cluster.etcdEndpoints.cp-address-1 }}"
+            - "{{ .cluster.etcdEndpoints.cp-address-2 }}"
+            - "{{ .cluster.etcdEndpoints.cp-address-3 }}"
           service:
             enabled: true
             port: 2379

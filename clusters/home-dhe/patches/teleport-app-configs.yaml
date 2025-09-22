@@ -12,15 +12,15 @@ spec:
             uri: https://10.130.5.120:8006
             insecure_skip_verify: true
           - name: home-dhe-grafana
-            uri: http://monitoring-kube-prometheus-stack-grafana.monitoring.svc.cluster.local
+            uri: http://kube-prometheus-stack-grafana.observability-system.svc.cluster.local
             rewrite:
               headers:
                 - "Host: dev-dhe-grafana.teleport.kubelize.com"
                 - "csrf_trusted_origins: 'http://dev-dhe-grafana.teleport.kubelize.com'"
           - name: home-dhe-prometheus
-            uri: http://monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090
+            uri: http://kube-prometheus-stack-prometheus.observability-system.svc.cluster.local:9090
           - name: home-dhe-alertmanager
-            uri: http://alertmanager-operated.monitoring.svc.cluster.local:9093
+            uri: http://alertmanager-operated.observability-system.svc.cluster.local:9093
           - name: home-dhe-argocd
             uri: http://argocd-server.argocd.svc.cluster.local
           - name: home-dhe-hubble

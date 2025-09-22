@@ -22,22 +22,22 @@ spec:
         server.disable.auth: true
       cm:
         kustomize.buildOptions: --load-restrictor LoadRestrictionsNone
-        resource.exclusions: |
-          - apiGroups:
-              - ""
-            kinds:
-              - Endpoints
-            clusters:
-              - '*'
-            # Exclude everything EXCEPT kube-prometheus-stack-kube-etcd
-            jqPathExpressions:
-              - '.metadata.name != "kube-prometheus-stack-kube-etcd"'
-        resource.inclusions: |
-          - apiVersion: v1
-            kind: Endpoints
-            name: kube-prometheus-stack-kube-etcd
-            clusters:
-              - '*'
+        # resource.exclusions: |
+        #   - apiGroups:
+        #       - ""
+        #     kinds:
+        #       - Endpoints
+        #     clusters:
+        #       - '*'
+        #     # Exclude everything EXCEPT kube-prometheus-stack-kube-etcd
+        #     jqPathExpressions:
+        #       - '.metadata.name != "kube-prometheus-stack-kube-etcd"'
+        # resource.inclusions: |
+        #   - apiVersion: v1
+        #     kind: Endpoints
+        #     name: kube-prometheus-stack-kube-etcd
+        #     clusters:
+        #       - '*'
     global:
       securityContext:
         runAsNonRoot: true

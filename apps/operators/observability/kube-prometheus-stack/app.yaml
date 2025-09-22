@@ -59,12 +59,11 @@ spec:
                       requests:
                         storage: 150Gi
           grafana:
-            "grafana.ini":
+            grafana.ini:
               auth:
-                # testing auth configurations currently
                 disable_login_form: true
                 disable_signout_menu: true
-              "auth.basic":
-                enabled: true
-              "auth.anonymous":
-                enabled: true
+              # auth.basic:
+              #   enabled: true
+              # auth.anonymous:
+              #   enabled: true

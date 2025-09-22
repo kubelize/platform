@@ -64,5 +64,5 @@ spec:
               disable_signout_menu: true
             # auth.basic:
             #   enabled: true
-            # auth.anonymous:
-            #   enabled: true
+            auth.anonymous:
+              enabled: true

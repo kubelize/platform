@@ -1,0 +1,9 @@
+machine:
+  network:
+      hostname: <YOUR_HOSTNAME>
+  nodeLabels:
+    topology.kubernetes.io/region: <PVE_CLUSTER_NAME>
+    topology.kubernetes.io/zone: <PVE_NODE_NAME>
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: "true"

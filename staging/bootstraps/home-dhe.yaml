@@ -27,7 +27,7 @@ cluster:
           namespace: flux-system
         spec:
           interval: 5m0s
-          path: ./clusters/home-dhe/
+          path: ./clusters/home-dhe/config/
           prune: true
           decryption:
             provider: sops

@@ -6,7 +6,6 @@ resources:
   - ../../apps/bundles/packages/crossplane/
   - ../../apps/bundles/packages/vault/
 
-  - config/
   # - vclusters/
 
 patches:

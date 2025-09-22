@@ -1,0 +1,18 @@
+# Source: kube-prometheus-stack/templates/exporters/kube-etcd/endpoints.yaml
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: kube-prometheus-stack-kube-etcd
+  labels:
+    app: kube-prometheus-stack-kube-etcd
+    k8s-app: etcd-server
+  namespace: kube-system
+subsets:
+  - addresses:
+      - ip: "{{ .cluster.etcdEndpoints.replica1 }}"
+      - ip: "{{ .cluster.etcdEndpoints.replica2 }}"
+      - ip: "{{ .cluster.etcdEndpoints.replica3 }}"
+    ports:
+      - name: http-metrics
+        port: 2381
+        protocol: TCP

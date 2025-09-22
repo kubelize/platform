@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - app.yaml
   - namespace.yaml
+  - endpoints.yaml
 patches:
   - target:
       kind: Application

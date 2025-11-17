@@ -144,6 +144,9 @@ spec:
             items:
               - key: plugin.yaml
                 path: plugin.yaml
+        - name: ejson-keys
+          secret:
+            secretName: ejson-keys
       extraContainers:
         - name: cmp-subst
           args:
@@ -185,4 +188,8 @@ spec:
             - mountPath: /home/argocd/cmp-server/config/plugin.yaml
               subPath: plugin.yaml
               name: subst-cmp-plugin
+            - mountPath: /opt/ejson/keys
+              name: ejson-keys
+              readOnly: true
+
 

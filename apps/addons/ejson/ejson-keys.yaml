@@ -1,0 +1,40 @@
+apiVersion: v1
+data:
+    650b7be8ee0190bee1046a8e36d256cd8dbb80f2b2979007cdaa8af3d4dd9a4e: ENC[AES256_GCM,data:NEpdw7ii13StXnKY0K1ATf8LmqrJFkizMjR5HT6YXRyAbr9Ii/OXmG4aaN+5Jbr+kQWWHU8DrcDXe3O1oN6RLS+qexjsasztSNnvzmkyJoSSjNVWDtbh8Q==,iv:Ajj2KkhjRenkYIDwX4GXf2XhUTiFQCpjw9fcw7dSNTc=,tag:8hZ8LUyizhZpWFueKS8Hog==,type:str]
+kind: Secret
+metadata:
+    name: ejson-keys
+    namespace: argocd
+type: Opaque
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2025-11-17T19:06:47Z"
+    mac: ENC[AES256_GCM,data:Ei5/FRNoUb4zAfTivCfiwOceSFvC6KfUmV2E+WhSPvKoRSOgUGzZtH2hxgqxYsRe2vg/Lc/1wESAh/7Q5i2d5b5hFhLvbzbUdf+iypcTlhnDtpvbRrKQU3eCl+Z6iz1vYaE31BgpmA7TC7qbYkjFgqLPaHPU5yV8q9Co4e7ETf4=,iv:pFqrSY5wx3Bm8oHESo0R0FSozBcHytcMyuNfNDymu2I=,tag:vmFXPZPL7xUjcHbhLH4Juw==,type:str]
+    pgp:
+        - created_at: "2025-11-17T19:06:47Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMAwFcjQZ1ckKcARAAnkOAhcwFhMdob2HaiDo9XOfvUIPY/YqE9u9CvUcIc64Z
+            FL0o7UOMCaF9YgPOgceTZylL58uneFx47pOBZL/pIF13zs49D0aTknoiqKfHI8kK
+            TlwWIBgW6lXl4WoxjFgsC38jKBB/11yrqAWsMldbx+od2iDn0wnmfvhc1vnMaFdM
+            5RMMXLTgivQHpIhUUtr0QE+6ZEkkPuAlM9nyeJp5dYXL+ZbWqH8vvaJYpJ5sgi+T
+            HVuuZKUD975WHhjMmzWNxCe/WvEjiGLf2xy+a1mgS+46z/j4k0MzduEbrMxmSzy7
+            r2v9P49vwE1g7YrBCFCgMp/pNwlminMF5jW+ZEneW1hmRjTAVazEjccd+PJ7FCNS
+            Udm+rN0YMOvAd1N2JGv2V1PhK6NDZFBANas+UsGWwpf/6FZQKH1i3wnBDNd2rc3m
+            woHrc+7fsUWak4wsrpAzEnaG4CVHPZ7CteNlpFAv9/HGZNAPBKP6hekJ9aziy7Gi
+            8ucbSEJcSdXQiticwoBrF1eQVqWQO54G4PL1yS4o0UVub07CiQNi6m5rHmasmRfH
+            PZbhTAsiM8zCFmNmauwc7bICgbaCnf/AbKINtxCfAP2dj28utytoLHBBV3wbxRmp
+            JCRVLKLodC16TIE01rJkvcnrrMwkl7VmuIYAgASDdbtuYLpAGzMleYb46EjqwMfU
+            aAEJAhC7gCQFqlMgMvpneOpkWVbe0E7vS1ogGoSJumfe+IPQxeE0IwgvKo3nv7iG
+            HuzJ0eiaG15Z1sC+JhtFO9+4cWICrWnyYzUrECEaKcUyD4vyYEYe36Yd2p2NjZKP
+            GT1orwmjzRTD
+            =lCHg
+            -----END PGP MESSAGE-----
+          fp: 4C460A5D1A91A52F3E204754CA746D9D4345890B
+    encrypted_regex: ^(data|stringData|secrets)$
+    version: 3.9.4

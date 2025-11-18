@@ -15,6 +15,7 @@ spec:
         name: argocd
         namespace: flux-system
   values:
+    fullnameOverride: argocd
     crds:
       enabled: true
     configs:

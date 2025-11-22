@@ -1132,3 +1132,26 @@ spec:
                         runAsNonRoot: true
                         seccompProfile:
                           type: RuntimeDefault
+                - chart:
+                    name: raw
+                    repo: https://bedag.github.io/helm-charts
+                    version: 2.0.0
+                  release:
+                    name: vcluster-raw
+                    namespace: argocd
+                  values: |-
+                    resources:
+                      - apiVersion: argoproj.io/v1alpha1
+                        kind: Application
+                        metadata:
+                          name: bootstrap
+                          namespace: argocd
+                        spec:
+                          project: default
+                          sources:
+                            - repoURL: https://github.com/kubelize/platform
+                              path: clusters/a01-vcluster/
+                              targetRevision: main
+                          destination:
+                            server: https://kubernetes.default.svc
+                            namespace: argocd

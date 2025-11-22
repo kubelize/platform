@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: patch
+spec:
+  source:
+    helm:
+      valuesObject:
+        kubeClusterName: home-mck
+        apps:
+          - name: home-mck-pve
+            uri: https://192.168.1.211:8006
+            insecure_skip_verify: true
+          - name: home-mck-grafana
+            uri: http://kube-prometheus-stack-grafana.observability-system.svc.cluster.local
+            rewrite:
+              headers:
+                - "Host: home-mck-grafana.teleport.kubelize.com"
+                - "csrf_trusted_origins: 'http://home-mck-grafana.teleport.kubelize.com'"
+          - name: home-mck-prometheus
+            uri: http://kube-prometheus-stack-prometheus.observability-system.svc.cluster.local:9090
+          - name: home-mck-alertmanager
+            uri: http://alertmanager-operated.observability-system.svc.cluster.local:9093
+          - name: home-mck-argocd
+            uri: http://argocd-server.argocd.svc.cluster.local
+          - name: home-mck-hubble
+            uri: http://hubble-ui.kube-system.svc.cluster.local
+          - name: home-mck-web-rcon
+            uri: https://web-rcon-service.web-rcon.svc.cluster.local
+            insecure_skip_verify: true
+            rewrite:
+              headers:
+                - "Connection: Upgrade"
+                - "Upgrade: websocket"
+                - "Host: home-mck-web-rcon.teleport.kubelize.com"
+                - "Scheme: wss"
+                - "Filename: /ws"

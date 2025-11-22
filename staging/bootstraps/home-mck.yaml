@@ -1,0 +1,81 @@
+cluster:
+  inlineManifests:
+    - name: bootstrap
+      contents: |
+        apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+        kind: Kustomization
+        metadata:
+          name: argocd
+          namespace: flux-system
+        spec:
+          interval: 5m0s
+          path: ./apps/operators/gitops/argocd/
+          prune: true
+          decryption:
+            provider: sops
+            secretRef:
+              name: sops-gpg
+          sourceRef:
+            kind: GitRepository
+            name: platform
+            namespace: flux-system
+        ---
+        apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+        kind: Kustomization
+        metadata:
+          name: platform
+          namespace: flux-system
+        spec:
+          interval: 5m0s
+          path: ./clusters/home-dhe/config/
+          prune: true
+          decryption:
+            provider: sops
+            secretRef:
+              name: sops-gpg
+          sourceRef:
+            kind: GitRepository
+            name: platform
+            namespace: flux-system
+          dependsOn:
+            - name: argocd
+        ---
+        apiVersion: source.toolkit.fluxcd.io/v1
+        kind: GitRepository
+        metadata:
+          name: platform
+          namespace: flux-system
+        spec:
+          interval: 30s
+          url: https://github.com/kubelize/platform
+          ref:
+            branch: main
+        ---
+        apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+        kind: Kustomization
+        metadata:
+          name: kube-secrets
+          namespace: flux-system
+        spec:
+          interval: 5m0s
+          path: ./environments/home-dhe/
+          prune: true
+          decryption:
+            provider: sops
+            secretRef:
+              name: sops-gpg
+          sourceRef:
+            kind: GitRepository
+            name: kube-secrets
+            namespace: flux-system
+        ---
+        apiVersion: source.toolkit.fluxcd.io/v1
+        kind: GitRepository
+        metadata:
+          name: kube-secrets
+          namespace: flux-system
+        spec:
+          interval: 30s
+          url: https://github.com/kubelize/kube-secrets
+          ref:
+            branch: main

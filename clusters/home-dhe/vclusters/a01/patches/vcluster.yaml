@@ -176,7 +176,7 @@ spec:
             # StorageClasses defines if storage classes should get synced from the host cluster to the virtual cluster, but not back. If auto, is automatically enabled when the virtual scheduler is enabled.
             storageClasses:
               # Enabled defines if this option should be enabled.
-              enabled: auto
+              enabled: true
             # IngressClasses defines if ingress classes should get synced from the host cluster to the virtual cluster, but not back.
             ingressClasses:
               # Enabled defines if this option should be enabled.

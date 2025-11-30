@@ -205,7 +205,7 @@ spec:
             # Secrets defines if secrets in the host should get synced to the virtual cluster.
             secrets:
               # Enabled defines if this option should be enabled.
-              enabled: true
+              enabled: false
               # Mappings for Namespace and Object
               mappings:
                 # ByName is a map of host-object-namespace/host-object-name: virtual-object-namespace/virtual-object-name.

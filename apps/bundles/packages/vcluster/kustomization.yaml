@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
 
   - ../../../operators/gitops/argocd/alternative/
+  - ../../../operators/security/teleport-kube-agent
+  - ../../../operators/observability/metrics-server

@@ -180,7 +180,7 @@ spec:
             # IngressClasses defines if ingress classes should get synced from the host cluster to the virtual cluster, but not back.
             ingressClasses:
               # Enabled defines if this option should be enabled.
-              enabled: false
+              enabled: true
             # RuntimeClasses defines if runtime classes should get synced from the host cluster to the virtual cluster, but not back.
             runtimeClasses:
               # Enabled defines if this option should be enabled.

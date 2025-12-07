@@ -1,0 +1,27 @@
+kind: Cluster
+name: home-dhe
+talos:
+  version: v1.9.2
+kubernetes:
+  version: 1.31.13
+patches:
+  - name: cni
+    file: patches/cni.yaml
+---
+kind: ControlPlane
+machineClass:
+  name: kubelize-control-planes
+  size: 3
+patches:
+  - name: cilium
+    file: patches/cilium.yaml
+  - name: fluxcd
+    file: patches/fluxcd.yaml
+  - name: bootstrap
+    file: bootstraps/kubelize-core.yaml
+---
+kind: Workers
+name: workers
+machineClass:
+  name: kubelize-workers
+  size: 3

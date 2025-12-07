@@ -1,0 +1,9 @@
+cluster:
+  name: home-dhe
+  etcdEndpoints:
+    cpAddress1: 10.130.5.110
+    cpAddress2: 10.130.5.116
+    cpAddress3: 10.130.5.119
+  settings:
+    defaultIngressClass: nginx
+    defaultStorageClass: proxmox

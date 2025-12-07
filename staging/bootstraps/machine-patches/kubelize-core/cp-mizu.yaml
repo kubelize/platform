@@ -1,0 +1,13 @@
+machine:
+  network:
+      hostname: cp-mizu-01
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: "true"
+cluster:
+  controllerManager:
+    extraArgs:
+      bind-address: 0.0.0.0
+  scheduler:
+    extraArgs:
+      bind-address: 0.0.0.0

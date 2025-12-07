@@ -1,9 +1,9 @@
 cluster:
-  name: home-dhe
+  name: kubelize-core
   etcdEndpoints:
-    cpAddress1: 10.130.5.110
-    cpAddress2: 10.130.5.116
-    cpAddress3: 10.130.5.119
+    cpAddress1: 10.130.5.103
+    cpAddress2: 10.130.5.105
+    cpAddress3: 10.130.5.107
   settings:
     defaultIngressClass: nginx
     defaultStorageClass: proxmox

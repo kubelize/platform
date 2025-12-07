@@ -1,5 +1,5 @@
 kind: Cluster
-name: home-dhe
+name: kubelize-core
 talos:
   version: v1.9.2
 kubernetes:
@@ -10,7 +10,7 @@ patches:
 ---
 kind: ControlPlane
 machineClass:
-  name: kubelize-control-planes
+  name: core-control-planes
   size: 3
 patches:
   - name: cilium
@@ -23,5 +23,5 @@ patches:
 kind: Workers
 name: workers
 machineClass:
-  name: kubelize-workers
+  name: core-workers
   size: 3

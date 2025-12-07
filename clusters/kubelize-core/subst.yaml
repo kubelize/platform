@@ -6,4 +6,4 @@ cluster:
     cpAddress3: 10.130.5.107
   settings:
     defaultIngressClass: nginx
-    defaultStorageClass: proxmox
+    defaultStorageClass: block

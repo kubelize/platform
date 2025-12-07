@@ -6,32 +6,22 @@ spec:
   source:
     helm:
       valuesObject:
-        kubeClusterName: home-dhe
+        kubeClusterName: kubelize-core
         apps:
-          - name: dhe-pve
-            uri: https://10.130.5.120:8006
+          - name: core-pve
+            uri: https://10.130.5.10:8006
             insecure_skip_verify: true
-          - name: home-dhe-grafana
+          - name: core-grafana
             uri: http://kube-prometheus-stack-grafana.observability-system.svc.cluster.local
             rewrite:
               headers:
-                - "Host: dev-dhe-grafana.teleport.kubelize.com"
-                - "csrf_trusted_origins: 'http://dev-dhe-grafana.teleport.kubelize.com'"
-          - name: home-dhe-prometheus
+                - "Host: core-grafana.teleport.kubelize.com"
+                - "csrf_trusted_origins: 'http://core-grafana.teleport.kubelize.com'"
+          - name: core-prometheus
             uri: http://kube-prometheus-stack-prometheus.observability-system.svc.cluster.local:9090
-          - name: home-dhe-alertmanager
+          - name: core-alertmanager
             uri: http://alertmanager-operated.observability-system.svc.cluster.local:9093
-          - name: home-dhe-argocd
+          - name: core-argocd
             uri: http://argocd-server.argocd.svc.cluster.local
-          - name: home-dhe-hubble
+          - name: core-hubble
             uri: http://hubble-ui.kube-system.svc.cluster.local
-          - name: home-dhe-web-rcon
-            uri: https://web-rcon-service.web-rcon.svc.cluster.local
-            insecure_skip_verify: true
-            rewrite:
-              headers:
-                - "Connection: Upgrade"
-                - "Upgrade: websocket"
-                - "Host: home-dhe-web-rcon.teleport.kubelize.com"
-                - "Scheme: wss"
-                - "Filename: /ws"

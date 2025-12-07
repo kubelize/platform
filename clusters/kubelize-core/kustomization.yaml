@@ -8,12 +8,12 @@ resources:
 
 #   - vclusters/
 
-# patches:
-#   - target:
-#       kind: StorageClass
-#       name: proxmox
-#     path: patches/zfs-device.yaml
-#   - target:
-#       kind: Application
-#       name: teleport-kube-agent
-#     path: patches/teleport-app-configs.yaml
+patches:
+  - target:
+      kind: StorageClass
+      name: proxmox
+    path: patches/zfs-device.yaml
+  - target:
+      kind: Application
+      name: teleport-kube-agent
+    path: patches/teleport-app-configs.yaml

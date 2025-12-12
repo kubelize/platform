@@ -5,6 +5,9 @@ metadata:
     namespace: observability-system
 type: Opaque
 data:
-  etcd-ca.crt: "{{ .ejson.etcd.caCert }}"
-  etcd-client.crt: "{{ .ejson.etcd.serverCert }}"
-  etcd-client-key.key: "{{ .ejson.etcd.serverKey }}"
+  etcd-ca.crt: |
+  "{{ .ejson.etcd.caCert | indent 4 }}"
+  etcd-client.crt: |
+  "{{ .ejson.etcd.serverCert | indent 4 }}"
+  etcd-client-key.key: |
+  "{{ .ejson.etcd.serverKey | indent 4 }}"

@@ -8,6 +8,6 @@ stringData:
   etcd-ca.crt: |-
     {{ .ejson.etcd.caCert | strings.Indent "    " }}
   etcd-client.crt: |-
-    {{ .ejson.etcd.clientCert | strings.Indent "    " }}
+    {{ .ejson.etcd.serverCert | strings.Indent "    " }}
   etcd-client-key.key: |-
-    {{ .ejson.etcd.clientKey | strings.Indent "    " }}
+    {{ .ejson.etcd.serverKey | strings.Indent "    " }}

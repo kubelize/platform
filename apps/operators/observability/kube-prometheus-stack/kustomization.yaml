@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - app.yaml
   - namespace.yaml
+  - etcd-certs.yaml
 patches:
   - target:
       kind: Application

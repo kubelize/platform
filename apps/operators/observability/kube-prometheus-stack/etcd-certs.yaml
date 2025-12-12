@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: etcd-certs
+    namespace: observability-system
+type: Opaque
+data:
+  etcd-ca.crt: "{{ .ejson.etcd.caCert }}"
+  etcd-client.crt: "{{ .ejson.etcd.serverCert }}"
+  etcd-client-key.key: "{{ .ejson.etcd.serverKey }}"

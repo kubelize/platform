@@ -4,10 +4,7 @@ metadata:
     name: etcd-certs
     namespace: observability-system
 type: Opaque
-stringData:
-  etcd-ca.crt: |-
-    {{ .ejson.etcd.caCert | strings.Indent "    " }}
-  etcd-client.crt: |-
-    {{ .ejson.etcd.serverCert | strings.Indent "    " }}
-  etcd-client-key.key: |-
-    {{ .ejson.etcd.serverKey | strings.Indent "    " }}
+data:
+  etcd-ca.crt: "{{ .ejson.etcd.caCert}}"
+  etcd-client.crt: "{{ .ejson.etcd.serverCert }}"
+  etcd-client-key.key: "{{ .ejson.etcd.serverKey }}"

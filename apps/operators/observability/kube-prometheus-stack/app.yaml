@@ -79,4 +79,4 @@ spec:
             #   enabled: true
             auth.anonymous:
               enabled: true
-              org_role: Viewer
+              org_role: Admin

@@ -23,6 +23,9 @@ spec:
           #   - "{{ .cluster.etcdEndpoints.cpAddress3 }}"
           service:
             enabled: true
+            ipFamilyPolicy: SingleStack
+            ipFamilies:
+              - IPv4
             port: 2379
             targetPort: 2379
           serviceMonitor:

@@ -17,10 +17,10 @@ spec:
       valuesObject:
         # NOTE: These must be set manually to the control plane IP addresses
         kubeEtcd:
-          endpoints:
-            - "{{ .cluster.etcdEndpoints.cpAddress1 }}"
-            - "{{ .cluster.etcdEndpoints.cpAddress2 }}"
-            - "{{ .cluster.etcdEndpoints.cpAddress3 }}"
+          # endpoints:
+          #   - "{{ .cluster.etcdEndpoints.cpAddress1 }}"
+          #   - "{{ .cluster.etcdEndpoints.cpAddress2 }}"
+          #   - "{{ .cluster.etcdEndpoints.cpAddress3 }}"
           service:
             enabled: true
             port: 2379

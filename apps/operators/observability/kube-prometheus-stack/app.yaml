@@ -57,8 +57,6 @@ spec:
                       storage: 10Gi
         prometheus:
           prometheusSpec:
-            secrets:
-              - etcd-certs
             retention: 30d
             storageSpec:
               volumeClaimTemplate:

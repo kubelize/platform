@@ -4,6 +4,8 @@ resources:
 
   - ../../apps/bundles/vcluster-r1/
 
+namePrefix: "a01-"
+
 patches:
   - target:
       kind: Application

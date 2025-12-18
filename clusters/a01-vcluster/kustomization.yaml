@@ -13,3 +13,7 @@ patches:
       kind: Application
       name: teleport-kube-agent
     path: patches/destination.yaml
+  - target:
+      kind: Application
+      name: metrics-server
+    path: patches/destination.yaml

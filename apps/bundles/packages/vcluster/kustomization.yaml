@@ -2,5 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 
-  - ../../../operators/security/teleport-kube-agent
-  - ../../../operators/observability/metrics-server
+  - ../../../operators/security/teleport-kube-agent/

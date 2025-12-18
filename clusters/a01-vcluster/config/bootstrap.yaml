@@ -10,5 +10,5 @@ spec:
       path: clusters/a01-vcluster
       targetRevision: main
   destination:
-    server: a01-vcluster
+    server: https://a01-vcluster.a01-vcluster.svc.cluster.local:443
     namespace: argocd

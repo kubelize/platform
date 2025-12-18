@@ -1098,7 +1098,7 @@ spec:
               # ManifestsTemplate is a Kubernetes manifest template that will be rendered with vCluster values before applying it within the virtual cluster.
               manifestsTemplate: ""
               # Helm are Helm charts that should get deployed into the virtual cluster
-              helm: ""
+              helm: []
                 # - chart:
                 #     name: argo-cd
                 #     repo: https://argoproj.github.io/argo-helm

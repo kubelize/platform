@@ -10,5 +10,5 @@ spec:
       path: clusters/a01-vcluster
       targetRevision: main
   destination:
-    server: https://kubernetes.default.svc
+    server: a01-vcluster
     namespace: argocd

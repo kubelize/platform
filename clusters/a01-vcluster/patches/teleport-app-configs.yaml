@@ -7,6 +7,6 @@ spec:
     helm:
       valuesObject:
         kubeClusterName: a01-vcluster
-        apps:
-          - name: a01-vcluster-argocd
-            uri: http://argocd-server.argocd.svc.cluster.local
+        apps: []
+          # - name: a01-vcluster-argocd
+          #   uri: http://argocd-server.argocd.svc.cluster.local

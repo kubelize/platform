@@ -1,0 +1,7 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: patch
+spec:
+  destination:
+    server: https://a01-vcluster.a01-vcluster:443

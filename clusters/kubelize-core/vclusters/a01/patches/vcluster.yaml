@@ -901,7 +901,7 @@ spec:
           # - ClusterIssuers will be synced from the host cluster to the virtual cluster.
           certManager:
             # Enabled defines if this option should be enabled.
-            enabled: false
+            enabled: true
             # Sync contains advanced configuration for syncing cert-manager resources.
             sync:
               toHost:

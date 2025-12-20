@@ -17,6 +17,9 @@ spec:
         valuesObject:
           crds:
             enabled: true
+          ingressShim:
+            defaultIssuerName: letsencrypt-prod-nginx
+            defaultIssuerKind: ClusterIssuer
     - repoURL: https://github.com/kubelize/platform
       targetRevision: main
       path: apps/operators/connectivity/cert-manager/addons

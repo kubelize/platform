@@ -91,7 +91,7 @@ spec:
             # Ingresses defines if ingresses created within the virtual cluster should get synced to the host cluster.
             ingresses:
               # Enabled defines if this option should be enabled.
-              enabled: false
+              enabled: true
             # PriorityClasses defines if priority classes created within the virtual cluster should get synced to the host cluster.
             priorityClasses:
               # Enabled defines if this option should be enabled.

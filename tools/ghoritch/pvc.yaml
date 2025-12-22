@@ -4,6 +4,7 @@ metadata:
   name: no-ghoritch-page
   namespace: growth-vat
 spec:
+  storageClassName: nfs
   accessModes:
     - ReadWriteOnce
   resources:

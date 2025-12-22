@@ -594,7 +594,7 @@ spec:
             # HighAvailability holds options related to high availability.
             highAvailability:
               # Replicas is the amount of replicas to use for the statefulSet.
-              replicas: 1
+              replicas: 3
               # LeaseDuration is the time to lease for the leader.
               leaseDuration: 60
               # RenewDeadline is the deadline to renew a lease for the leader.
@@ -646,13 +646,28 @@ spec:
               # PodManagementPolicy is the statefulSet pod management policy.
               podManagementPolicy: Parallel
               # TopologySpreadConstraints are the topology spread constraints for the pod.
-              topologySpreadConstraints: []
+              topologySpreadConstraints:
+                - maxSkew: 1
+                  topologyKey: kubernetes.io/hostname
+                  whenUnsatisfiable: DoNotSchedule
+                  labelSelector:
+                    matchLabels:
+                      app: vcluster
               # PriorityClassName is the priority class name for the the pod.
               priorityClassName: ""
               # NodeSelector is the node selector to apply to the pod.
               nodeSelector: {}
               # Affinity is the affinity to apply to the pod.
-              affinity: {}
+              affinity:
+                podAntiAffinity:
+                  requiredDuringSchedulingIgnoredDuringExecution:
+                    - labelSelector:
+                        matchExpressions:
+                          - key: app
+                            operator: In
+                            values:
+                              - vcluster
+                      topologyKey: kubernetes.io/hostname
               # Tolerations are the tolerations to apply to the pod.
               tolerations: []
             # Probes enables or disables the main container probes.

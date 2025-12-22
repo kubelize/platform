@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 
   - ../../apps/bundles/core-r1/
+  - ../../apps/operators/storage/csi-driver-nfs/
 #   - ../../apps/bundles/packages/crossplane/
 #   - ../../apps/bundles/packages/vault/
 

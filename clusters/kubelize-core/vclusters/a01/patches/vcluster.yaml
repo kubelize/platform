@@ -349,7 +349,7 @@ spec:
               # Deploy defines to use an external etcd that is deployed by the helm chart
               deploy:
                 # Enabled defines that an external etcd should be deployed.
-                enabled: false
+                enabled: true
                 # StatefulSet holds options for the external etcd statefulSet.
                 statefulSet:
                   # Enabled defines if the statefulSet should be deployed
@@ -386,7 +386,7 @@ spec:
                   # HighAvailability are high availability options
                   highAvailability:
                     # Replicas are the amount of pods to use.
-                    replicas: 1
+                    replicas: 3
                   # Scheduling options for the etcd pods.
                   scheduling:
                     # PodManagementPolicy is the statefulSet pod management policy.
@@ -394,11 +394,26 @@ spec:
                     # NodeSelector is the node selector to apply to the pod.
                     nodeSelector: {}
                     # Affinity is the affinity to apply to the pod.
-                    affinity: {}
+                    affinity:
+                      podAntiAffinity:
+                        requiredDuringSchedulingIgnoredDuringExecution:
+                          - labelSelector:
+                              matchExpressions:
+                                - key: app
+                                  operator: In
+                                  values:
+                                    - vcluster-etcd
+                            topologyKey: kubernetes.io/hostname
                     # Tolerations are the tolerations to apply to the pod.
                     tolerations: []
                     # TopologySpreadConstraints are the topology spread constraints for the pod.
-                    topologySpreadConstraints: []
+                    topologySpreadConstraints:
+                      - maxSkew: 1
+                        topologyKey: kubernetes.io/hostname
+                        whenUnsatisfiable: DoNotSchedule
+                        labelSelector:
+                          matchLabels:
+                            app: vcluster-etcd
                     # PriorityClassName is the priority class name for the the pod.
                     priorityClassName: ""
                   # Security options for the etcd pods.

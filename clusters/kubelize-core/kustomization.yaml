@@ -4,6 +4,7 @@ resources:
 
   - ../../apps/bundles/core-r1/
   - ../../apps/operators/storage/csi-driver-nfs/
+  - ../../apps/addons/storageclasses/csi-driver-nfs/
 #   - ../../apps/bundles/packages/crossplane/
 #   - ../../apps/bundles/packages/vault/
 
@@ -14,6 +15,10 @@ patches:
       kind: StorageClass
       name: proxmox
     path: patches/zfs-device.yaml
+  - target:
+      kind: StorageClass
+      name: nfs
+    path: patches/nfs-configuration.yaml
   - target:
       kind: Application
       name: teleport-kube-agent

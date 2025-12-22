@@ -1,0 +1,6 @@
+- op: replace
+  path: "/parameters/server"
+  value: nfs-sora
+- op: replace
+  path: "/parameters/share"
+  value: /k8s

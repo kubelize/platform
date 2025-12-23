@@ -1,0 +1,9 @@
+machine:
+  network:
+      hostname: wk-hana-02
+  nodeLabels:
+    topology.kubernetes.io/region: pve-kubelize
+    topology.kubernetes.io/zone: pve-hana
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: "true"

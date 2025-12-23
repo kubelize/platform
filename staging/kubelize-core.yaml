@@ -24,4 +24,4 @@ kind: Workers
 name: workers
 machineClass:
   name: core-workers
-  size: 3
+  size: 6

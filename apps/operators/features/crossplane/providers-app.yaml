@@ -69,22 +69,22 @@ spec:
                             capabilities:
                               drop:
                                 - ALL
-          - apiVersion: pkg.crossplane.io/v1
-            kind: Provider
-            metadata:
-              name: provider-kubernetes
-            spec:
-              package: xpkg.upbound.io/crossplane-contrib/provider-kubernetes:v0.15.0
-              runtimeConfigRef:
-                name: provider-kubernetes
-          - apiVersion: pkg.crossplane.io/v1
-            kind: Provider
-            metadata:
-              name: provider-vault
-            spec:
-              package: xpkg.upbound.io/upbound/provider-vault:v2.2.1
-              runtimeConfigRef:
-                name: default
+          # - apiVersion: pkg.crossplane.io/v1
+          #   kind: Provider
+          #   metadata:
+          #     name: provider-kubernetes
+          #   spec:
+          #     package: xpkg.upbound.io/crossplane-contrib/provider-kubernetes:v0.15.0
+          #     runtimeConfigRef:
+          #       name: provider-kubernetes
+          # - apiVersion: pkg.crossplane.io/v1
+          #   kind: Provider
+          #   metadata:
+          #     name: provider-vault
+          #   spec:
+          #     package: xpkg.upbound.io/upbound/provider-vault:v2.2.1
+          #     runtimeConfigRef:
+          #       name: default
           ##### Functions #####
           - apiVersion: pkg.crossplane.io/v1
             kind: Function

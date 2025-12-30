@@ -77,6 +77,14 @@ spec:
               package: xpkg.upbound.io/crossplane-contrib/provider-kubernetes:v0.15.0
               runtimeConfigRef:
                 name: provider-kubernetes
+          - apiVersion: pkg.crossplane.io/v1
+            kind: Provider
+            metadata:
+              name: provider-helm
+            spec:
+              package: xpkg.upbound.io/crossplane-contrib/provider-helm:v0.20.0
+              runtimeConfigRef:
+                name: default
           # - apiVersion: pkg.crossplane.io/v1
           #   kind: Provider
           #   metadata:

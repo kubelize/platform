@@ -79,6 +79,45 @@ spec:
             - BackgroundScanReport
             - ClusterBackgroundScanReport
             - UpdateRequest
+        resource.customizations: |
+          pkg.crossplane.io/Provider:
+            health.lua: |
+              hs = {}
+              if obj.status == nil or obj.status.conditions == nil then
+                hs.status = "Progressing"
+                hs.message = "Waiting for status conditions"
+                return hs
+              end
+
+              for i, condition in ipairs(obj.status.conditions) do
+                if condition.type == "Healthy" then
+                  if condition.status == "True" then
+                    hs.status = "Healthy"
+                  elseif condition.status == "False" then
+                    hs.status = "Degraded"
+                  else
+                    hs.status = "Progressing"
+                  end
+                  hs.message = condition.message or ""
+                  return hs
+                end
+              end
+
+              for i, condition in ipairs(obj.status.conditions) do
+                if condition.type == "Installed" then
+                  if condition.status == "True" then
+                    hs.status = "Healthy"
+                  else
+                    hs.status = "Progressing"
+                  end
+                  hs.message = condition.message or ""
+                  return hs
+                end
+              end
+
+              hs.status = "Progressing"
+              hs.message = "No health conditions found"
+              return hs
     global:
       securityContext:
         runAsNonRoot: true
@@ -193,5 +232,4 @@ spec:
             - mountPath: /opt/ejson/keys
               name: ejson-keys
               readOnly: true
-
 

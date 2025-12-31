@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - namespaces.yaml
   - bootstrap.yaml
+  - projects.yaml
   - ippool.yaml
   - secrets/
 patches:

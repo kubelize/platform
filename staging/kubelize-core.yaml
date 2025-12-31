@@ -19,6 +19,15 @@ patches:
     file: patches/fluxcd.yaml
   - name: bootstrap
     file: bootstraps/kubelize-core.yaml
+# --- RECOVERY CONFIG ---
+# kind: ControlPlane
+# machines:
+#   - b2054e56-8fc6-4181-921c-98cf095c9495
+#   - 00527423-6ef9-4a2c-803f-54463aceeabe
+#   - 2e6367de-a47a-49b6-ac72-e1188e49db1c
+# bootstrapSpec:
+#   clusterUUID: a9864fea-0c88-4664-99c6-658eb7fcf5c5 # The cluster UUID we found above
+#   snapshot: FFFFFFFF96AAC167.snapshot
 ---
 kind: Workers
 name: workers

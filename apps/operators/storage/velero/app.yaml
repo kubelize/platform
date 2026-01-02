@@ -26,7 +26,7 @@ spec:
             backupStorageLocation:
               - name: default
                 provider: aws
-                bucket: velero-backups
+                bucket: velero
                 config:
                   region: minio
                   s3ForcePathStyle: "true"
@@ -38,7 +38,7 @@ spec:
                 provider: aws
                 config:
                   region: minio
-                  
+
           # Credentials for S3 access (will be patched per-cluster)
           credentials:
             useSecret: true

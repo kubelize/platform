@@ -1,0 +1,25 @@
+---
+# Example patch for configuring Velero with Wasabi S3
+# Apply this in your cluster's patches directory
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: velero
+  namespace: argocd
+spec:
+  sources:
+    - repoURL: https://vmware-tanzu.github.io/helm-charts
+      targetRevision: 7.2.1
+      chart: velero
+      helm:
+        valuesObject:
+          configuration:
+            backupStorageLocation:
+              - name: default
+                provider: aws
+                bucket: velero-backups  # Update with your bucket name
+                config:
+                  region: us-east-1  # Update with your Wasabi region
+                  s3ForcePathStyle: "false"
+                  s3Url: "https://s3.us-east-1.wasabisys.com"  # Update with your region endpoint

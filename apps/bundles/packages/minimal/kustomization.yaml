@@ -10,8 +10,6 @@ resources:
 # Observability
   - ../../../operators/observability/metrics-server/
   - ../../../operators/observability/kube-prometheus-stack/
-  - ../../../operators/observability/velero/
-
 # Security
   # - ../../../operators/security/kyverno/
   - ../../../operators/security/teleport-kube-agent/

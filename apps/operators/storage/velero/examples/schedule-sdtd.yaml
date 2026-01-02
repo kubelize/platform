@@ -10,7 +10,7 @@ spec:
   template:
     # Include only sdtd namespace
     includedNamespaces:
-      - sdtd
+      - a01-sdtd
     
     # Retain backups for 30 days
     ttl: 720h

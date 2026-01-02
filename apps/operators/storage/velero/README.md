@@ -131,16 +131,6 @@ velero schedule pause daily-backup
 velero schedule unpause daily-backup
 ```
 
-## Integration with SDTD Server Backups
-
-The `critical-hourly` schedule includes the `sdtd` namespace for frequent backups of your game server. This complements the manual backup script in `/tools/sdtd-backup.sh`.
-
-**Recommended Strategy:**
-- Use Velero for automated Kubernetes resource backups
-- Use the manual script for clean, offline backups before major updates
-- Velero provides quick recovery for accidental deletions or cluster failures
-- Manual backups provide guaranteed clean game state
-
 ## Monitoring
 
 Check backup status in ArgoCD or via CLI:

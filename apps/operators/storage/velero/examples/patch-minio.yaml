@@ -20,6 +20,6 @@ spec:
                 provider: aws
                 bucket: velero-backups
                 config:
-                  region: us-east-1
+                  region: minio
                   s3ForcePathStyle: "true"
-                  s3Url: "http://minio.storage.svc.cluster.local:9000"  # Update with your MinIO endpoint
+                  s3Url: "http://docker-hana:9000"  # Update with your MinIO endpoint

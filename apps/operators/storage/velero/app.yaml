@@ -22,26 +22,23 @@ spec:
                 - mountPath: /target
                   name: plugins
 
-          # Backup storage location configuration (cluster-specific)
           configuration:
-            # This will be patched per-cluster
             backupStorageLocation:
               - name: default
                 provider: aws
                 bucket: velero-backups
-                # S3-compatible endpoint (e.g., MinIO, Wasabi, etc.)
                 config:
-                  region: us-east-1
+                  region: minio
                   s3ForcePathStyle: "true"
-                  # s3Url: will be patched per-cluster
+                  s3Url: "http://docker-hana:9000"
             
             # Volume snapshot location (if needed)
             volumeSnapshotLocation:
               - name: default
                 provider: aws
                 config:
-                  region: us-east-1
-
+                  region: minio
+                  
           # Credentials for S3 access (will be patched per-cluster)
           credentials:
             useSecret: true

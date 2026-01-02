@@ -1,0 +1,25 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: sdtd-daily
+  namespace: velero
+spec:
+  # Daily at 3 AM
+  schedule: "0 3 * * *"
+  
+  template:
+    # Include only sdtd namespace
+    includedNamespaces:
+      - sdtd
+    
+    # Retain backups for 30 days
+    ttl: 720h
+    
+    # Include volume snapshots
+    snapshotVolumes: true
+    
+    # Backup labels
+    metadata:
+      labels:
+        velero.io/schedule-name: sdtd-daily
+        app: sdtd

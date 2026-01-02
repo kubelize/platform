@@ -1,0 +1,73 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: velero
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: velero
+  sources:
+    - repoURL: https://vmware-tanzu.github.io/helm-charts
+      targetRevision: 7.2.1
+      chart: velero
+      helm:
+        valuesObject:
+          # Initialize the server with the default configuration
+          initContainers:
+            - name: velero-plugin-for-aws
+              image: velero/velero-plugin-for-aws:v1.10.1
+              volumeMounts:
+                - mountPath: /target
+                  name: plugins
+
+          # Backup storage location configuration (cluster-specific)
+          configuration:
+            # This will be patched per-cluster
+            backupStorageLocation:
+              - name: default
+                provider: aws
+                bucket: velero-backups
+                # S3-compatible endpoint (e.g., MinIO, Wasabi, etc.)
+                config:
+                  region: us-east-1
+                  s3ForcePathStyle: "true"
+                  # s3Url: will be patched per-cluster
+            
+            # Volume snapshot location (if needed)
+            volumeSnapshotLocation:
+              - name: default
+                provider: aws
+                config:
+                  region: us-east-1
+
+          # Credentials for S3 access (will be patched per-cluster)
+          credentials:
+            useSecret: true
+            existingSecret: velero-credentials
+
+          # Resource requests/limits
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+
+          # Backup/restore settings
+          schedules: {}  # Define schedules in separate files
+          
+          # Node selector (optional, can be patched per cluster)
+          nodeSelector: {}
+          
+          # Tolerations (optional)
+          tolerations: []
+          
+          # Service account annotations (for IRSA if using AWS)
+          serviceAccount:
+            server:
+              create: true
+              name: velero
+              annotations: {}

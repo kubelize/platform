@@ -74,3 +74,4 @@ spec:
           kubectl:
             image:
               repository: docker.io/bitnamilegacy/kubectl
+              tag: latest

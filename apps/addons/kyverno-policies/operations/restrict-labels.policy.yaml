@@ -1,0 +1,63 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: restrict-labels
+spec:
+  validationFailureAction: Enforce
+  background: false
+  rules:
+    - name: prevent-label-set
+      skipBackgroundRequests: true
+      match:
+        any:
+          - resources:
+              kinds:
+                - Node
+                - Namespace
+                - Deployment
+                - StatefulSet
+                - DaemonSet
+                - CronJob
+                - Job
+                - ReplicaSet
+                - Pod
+                - argoproj.io/v1alpha1/Application
+                - cluster.k8s.io/v1alpha1/MachineDeployment
+              operations:
+                - CREATE
+                - UPDATE
+      exclude:
+        # Doesn't require kyverno itself to be excluded, as it is per default
+        any:
+          - clusterRoles:
+              - cluster-admin
+          - subjects:
+              - kind: ServiceAccount
+                name: argocd-application-controller
+                namespace: argocd
+              - kind: ServiceAccount
+                name: argocd-repo-server
+                namespace: argocd
+              - kind: ServiceAccount
+                name: kyverno-admission-controller
+                namespace: kyverno-system
+              - kind: ServiceAccount
+                name: kyverno-background-controller
+                namespace: kyverno-system
+              - kind: ServiceAccount
+                name: kyverno-cleanup-controller
+                namespace: kyverno-system
+      validate:
+        allowExistingViolations: true
+        failureAction: Enforce
+        message: "A label set is either missing or not allowed."
+        pattern:
+          metadata:
+            =(labels):
+              "X(bedag_alerting_category)": "?*"
+              # Additional reserved labels can be added as follows:
+              # "X(bedag.ch/type)": "?*"
+              # To disallow with a regex pattern, use the following syntax:
+              # "X(*bedag*)" : "?*"
+              # Required labels can be added as follows:
+              # "bedag.ch/created-by": "customer"

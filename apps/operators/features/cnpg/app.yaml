@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cnpg-operator
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    namespace: "cnpg-operator"
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://cloudnative-pg.github.io/charts
+    chart: cloudnative-pg
+    targetRevision: "*"
+    helm:
+      parameters: []
+      valuesObject:
+        config:
+          clusterWide: true

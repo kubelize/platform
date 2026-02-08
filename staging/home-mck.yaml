@@ -1,9 +1,9 @@
 kind: Cluster
 name: home-mck
 talos:
-  version: v1.10.9
+  version: v1.11.6
 kubernetes:
-  version: 1.30.9
+  version: 1.31.1
 # features:
 #   enableWorkloadProxy: true
 patches:
@@ -24,6 +24,8 @@ patches:
     file: patches/cni.yaml
   - name: fluxcd
     file: patches/fluxcd.yaml
+  - name: bootstrap
+    file: bootstraps/home-mck.yaml
 ---
 kind: Workers
 name: workers

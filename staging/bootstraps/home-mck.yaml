@@ -27,7 +27,7 @@ cluster:
           namespace: flux-system
         spec:
           interval: 5m0s
-          path: ./clusters/home-dhe/config/
+          path: ./clusters/home-mck/config/
           prune: true
           decryption:
             provider: sops
@@ -58,7 +58,7 @@ cluster:
           namespace: flux-system
         spec:
           interval: 5m0s
-          path: ./environments/home-dhe/
+          path: ./environments/home-mck/
           prune: true
           decryption:
             provider: sops

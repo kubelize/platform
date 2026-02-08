@@ -1,7 +1,6 @@
 machine:
-    network:
-        hostname: <hostname>
-machine:
+  network:
+      hostname: <hostname>
   kubelet:
     extraArgs:
       rotate-server-certificates: "true"

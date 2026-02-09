@@ -10,7 +10,7 @@ resources:
   - ../../apps/operators/features/cnpg/
 
   - overlays/test/
-  - overlays/prod/
+  # - overlays/prod/
 
   # - vclusters/
 

@@ -17,7 +17,7 @@ spec:
       valuesObject:
         global:
           tlsDisable: false
-          
+
           replicas: 1
 
           # Configures the port the injector should listen on
@@ -31,9 +31,6 @@ spec:
           # If true, will enable a node exporter metrics endpoint at /metrics.
           metrics:
             enabled: false
-
-          # Deprecated: Please use global.externalVaultAddr instead.
-          externalVaultAddr: ""
 
           # image sets the repo and tag of the vault-k8s image to use for the injector.
           image:
@@ -115,7 +112,7 @@ spec:
               - key: app.kubernetes.io/name
                 operator: NotIn
                 values:
-                - {{ template "vault.name" . }}-agent-injector
+                - vault-agent-injector
 
             # Extra annotations to attach to the webhook
             annotations: {}
@@ -211,7 +208,7 @@ spec:
               requiredDuringSchedulingIgnoredDuringExecution:
                 - labelSelector:
                     matchLabels:
-                      app.kubernetes.io/name: {{ template "vault.name" . }}-agent-injector
+                      app.kubernetes.io/name: vault-agent-injector
                       app.kubernetes.io/instance: "{{ .Release.Name }}"
                       component: webhook
                   topologyKey: kubernetes.io/hostname
@@ -279,21 +276,6 @@ spec:
           # If true, or "-" with global.enabled true, Vault server will be installed.
           # See vault.mode in _helpers.tpl for implementation details.
           enabled: "-"
-
-          # OpenShift service-ca operator integration
-          # Automates TLS certificate generation via the service-ca operator
-          serviceCA:
-            # Enable service-ca operator annotations and ConfigMap creation
-            # Requires: global.openshift=true
-            enabled: false
-            
-            # Secret name where service-ca will store the generated certificate
-            # IMPORTANT: Must match the secret name in server.volumes below
-            secretName: "vault-tls"
-            
-            # ConfigMap name for service-ca CA bundle injection
-            # IMPORTANT: Must match the ConfigMap name in server.volumes below
-            configMapName: "service-ca-bundle"
           
           # IMPORTANT: Configure server.volumes, server.volumeMounts, AND server config to use service-ca
           #

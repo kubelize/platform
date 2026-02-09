@@ -209,7 +209,7 @@ spec:
                 - labelSelector:
                     matchLabels:
                       app.kubernetes.io/name: vault-agent-injector
-                      app.kubernetes.io/instance: "{{ .Release.Name }}"
+                      app.kubernetes.io/instance: "vault"
                       component: webhook
                   topologyKey: kubernetes.io/hostname
 

@@ -19,10 +19,6 @@ spec:
           tlsDisable: false
 
         injector:
-          certs:
-            secretName: vault-agent-injector-tls
-            caBundle: ""
-
           # Configures the port the injector should listen on
           port: 8080
 
@@ -159,7 +155,7 @@ spec:
             # private key to serve the injector webhook. If this is null, then the
             # injector will default to its automatic management mode that will assign
             # a service account to the injector to generate its own certificates.
-            secretName: null
+            secretName: vault-agent-injector-tls
 
             # caBundle is a base64-encoded PEM-encoded certificate bundle for the CA
             # that signed the TLS certificate that the webhook serves. This must be set

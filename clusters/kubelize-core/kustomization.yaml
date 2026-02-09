@@ -8,6 +8,7 @@ resources:
   - ../../apps/bundles/packages/crossplane/
   - ../../apps/operators/storage/velero/
   - ../../apps/operators/features/cnpg/
+  - ../../apps/operators/features/vault/
 #   - ../../apps/bundles/packages/vault/
 
   # - vclusters/

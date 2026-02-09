@@ -178,12 +178,8 @@ spec:
 
           extraVolumes:
             - name: vault-server-tls
-              secret:
-                secretName: vault-server-tls
-          extraVolumeMounts:
-            - name: vault-server-tls
-              mountPath: /vault/userconfig/vault-server-tls
-              readOnly: true
+              type: secret
+              path: /vault/tls
 
           ha:
             enabled: true
@@ -192,17 +188,49 @@ spec:
               setNodeId: true
               config: |
                 ui = true
+                
+                # Single listener handles both API and cluster traffic
+                # - Port 8200: API/UI access (no client certs requested)
+                # - Port 8201: Cluster traffic (Raft handles mTLS via retry_join certs)
                 listener "tcp" {
                   address = "[::]:8200"
                   cluster_address = "[::]:8201"
                   tls_disable = 0
-                  tls_cert_file = "/vault/userconfig/vault-server-tls/tls.crt"
-                  tls_key_file = "/vault/userconfig/vault-server-tls/tls.key"
+                  tls_cert_file = "/vault/tls/vault-server-tls/tls.crt"
+                  tls_key_file  = "/vault/tls/vault-server-tls/tls.key"
+                  # Do NOT set tls_client_ca_file - would make listener request client certs
+                  # Raft mTLS uses leader_ca_cert_file in retry_join instead
                 }
+
+                # Make sure Vault advertises the right addresses
+                api_addr     = "https://vault-active.vault-{{ .environment.stage }}.svc.cluster.local:8200"
+                cluster_addr = "https://$(HOSTNAME).vault-internal.vault-{{ .environment.stage }}.svc.cluster.local:8201"
+
                 storage "raft" {
                   path = "/vault/data"
+                  retry_join {
+                    auto_join               = "provider=k8s label_selector=\"app.kubernetes.io/name=vault,component=server\" namespace=\"vault-{{ .environment.stage }}\""
+                    auto_join_scheme        = "https"
+                    auto_join_port          = 8200
+                    leader_tls_servername   = "vault-active.vault-{{ .environment.stage }}.svc.cluster.local"
+                    leader_ca_cert_file     = "/vault/tls/vault-server-tls/ca.crt"
+                    leader_client_cert_file = "/vault/tls/vault-server-tls/tls.crt"
+                    leader_client_key_file  = "/vault/tls/vault-server-tls/tls.key"
+                  }
+
+                  autopilot {
+                    server_stabilization_time          = "10s"
+                    last_contact_threshold             = "10s"
+                    min_quorum                         = 3
+                    cleanup_dead_servers               = "true"
+                    dead_server_last_contact_threshold = "10m"
+                    max_trailing_logs                  = 10000
+                    disable_upgrade_migration          = "false"
+                  }
                 }
+
                 service_registration "kubernetes" {}
+
 
           affinity:
             nodeAffinity:
@@ -234,6 +262,9 @@ spec:
             tag: "1.21.2"
             # Overrides the default Image Pull Policy
             pullPolicy: IfNotPresent
+
+          extraEnvironmentVars:
+            VAULT_CACERT: /vault/tls/vault-server-tls/ca.crt
 
           # Configure the Update Strategy Type for the StatefulSet
           # See https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies

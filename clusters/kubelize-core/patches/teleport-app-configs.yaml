@@ -25,3 +25,5 @@ spec:
             uri: http://argocd-server.argocd.svc.cluster.local
           - name: core-hubble
             uri: http://hubble-ui.kube-system.svc.cluster.local
+          - name: vault-test
+            uri: https://vault-active.vault-test.svc.cluster.local:8200

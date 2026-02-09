@@ -6,9 +6,9 @@ metadata:
 spec:
   isCA: true
   commonName: vault-ca
-  secretName: vault-ca
+  secretName: vault-ca-{{ .environment.stage }}
   duration: 8760h
   renewBefore: 720h
   issuerRef:
-    name: vault-selfsigned
+    name: vault-selfsigned-{{ .environment.stage }}
     kind: Issuer

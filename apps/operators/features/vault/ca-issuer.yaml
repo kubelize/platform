@@ -5,4 +5,4 @@ metadata:
   namespace: vault-{{ .environment.stage }}
 spec:
   ca:
-    secretName: vault-ca
+    secretName: vault-ca-{{ .environment.stage }}

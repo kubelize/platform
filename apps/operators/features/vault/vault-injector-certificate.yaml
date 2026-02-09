@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: vault-agent-injector-tls
-  namespace: vault
+  namespace: vault-{{ .environment.stage }}
 spec:
   secretName: vault-agent-injector-tls
   duration: 2160h

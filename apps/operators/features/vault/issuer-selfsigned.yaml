@@ -2,6 +2,6 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: vault-selfsigned
-  namespace: vault
+  namespace: vault-{{ .environment.stage }}
 spec:
   selfSigned: {}

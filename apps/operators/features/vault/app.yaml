@@ -23,35 +23,6 @@ spec:
             secretName: vault-agent-injector-tls
             caBundle: ""
 
-        server:
-          extraVolumes:
-            - name: vault-server-tls
-              secret:
-                secretName: vault-server-tls
-          extraVolumeMounts:
-            - name: vault-server-tls
-              mountPath: /vault/userconfig/vault-server-tls
-              readOnly: true
-          replicas: 3
-          ha:
-            enabled: true
-            raft:
-              enabled: true
-              setNodeId: true
-              config: |
-                ui = true
-                listener "tcp" {
-                  address = "[::]:8200"
-                  cluster_address = "[::]:8201"
-                  tls_disable = 0
-                  tls_cert_file = "/vault/userconfig/vault-server-tls/tls.crt"
-                  tls_key_file = "/vault/userconfig/vault-server-tls/tls.key"
-                }
-                storage "raft" {
-                  path = "/vault/data"
-                }
-                service_registration "kubernetes" {}
-
           # Configures the port the injector should listen on
           port: 8080
 
@@ -231,36 +202,6 @@ spec:
           extraEnvironmentVars: {}
             # KUBERNETES_SERVICE_HOST: kubernetes.default.svc
 
-          # Affinity Settings for injector pods
-          # This can either be a multi-line string or YAML matching the PodSpec's affinity field.
-          # Commenting out or setting as empty the affinity variable, will allow
-          # deployment of multiple replicas to single node services such as Minikube.
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                  - matchExpressions:
-                      - key: topology.kubernetes.io/zone
-                        operator: In
-                        values:
-                          - pve-hana
-                          - pve-sora
-                          - pve-mizu
-
-          # Topology settings for injector pods
-          # ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
-          # This should be either a multi-line string or YAML matching the topologySpreadConstraints array
-          # in a PodSpec.
-          topologySpreadConstraints:
-            - maxSkew: 1
-              topologyKey: topology.kubernetes.io/zone
-              whenUnsatisfiable: DoNotSchedule
-              labelSelector:
-                matchLabels:
-                  app.kubernetes.io/name: vault
-                  app.kubernetes.io/instance: vault
-                  component: server
-
           # Toleration Settings for injector pods
           # This should be either a multi-line string or YAML matching the Toleration array
           # in a PodSpec.
@@ -299,11 +240,6 @@ spec:
             # Extra annotations to attach to the injector serviceAccount
             annotations: {}
 
-          # A disruption budget limits the number of pods of a replicated application
-          # that are down simultaneously from voluntary disruptions
-          podDisruptionBudget:
-            maxUnavailable: 1
-
           # strategy for updating the deployment. This can be a multi-line string or a
           # YAML map.
           strategy: {}
@@ -317,6 +253,61 @@ spec:
           # If true, or "-" with global.enabled true, Vault server will be installed.
           # See vault.mode in _helpers.tpl for implementation details.
           enabled: "-"
+
+          replicas: 3
+
+          extraVolumes:
+            - name: vault-server-tls
+              secret:
+                secretName: vault-server-tls
+          extraVolumeMounts:
+            - name: vault-server-tls
+              mountPath: /vault/userconfig/vault-server-tls
+              readOnly: true
+
+          ha:
+            enabled: true
+            raft:
+              enabled: true
+              setNodeId: true
+              config: |
+                ui = true
+                listener "tcp" {
+                  address = "[::]:8200"
+                  cluster_address = "[::]:8201"
+                  tls_disable = 0
+                  tls_cert_file = "/vault/userconfig/vault-server-tls/tls.crt"
+                  tls_key_file = "/vault/userconfig/vault-server-tls/tls.key"
+                }
+                storage "raft" {
+                  path = "/vault/data"
+                }
+                service_registration "kubernetes" {}
+
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: topology.kubernetes.io/zone
+                        operator: In
+                        values:
+                          - pve-hana
+                          - pve-sora
+                          - pve-mizu
+
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: topology.kubernetes.io/zone
+              whenUnsatisfiable: DoNotSchedule
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: vault
+                  app.kubernetes.io/instance: vault
+                  component: server
+
+          podDisruptionBudget:
+            maxUnavailable: 1
           
           # IMPORTANT: Configure server.volumes, server.volumeMounts, AND server config to use service-ca
           #

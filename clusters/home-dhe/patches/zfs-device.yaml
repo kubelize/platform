@@ -1,3 +1,0 @@
-- op: replace
-  path: "/parameters/storage"
-  value: zoom

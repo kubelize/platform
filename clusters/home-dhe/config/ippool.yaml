@@ -1,8 +1,0 @@
-apiVersion: "cilium.io/v2alpha1"
-kind: CiliumLoadBalancerIPPool
-metadata:
-  name: site-dhe
-spec:
-  blocks:
-    - start: 10.130.5.230
-      stop: 10.130.5.250

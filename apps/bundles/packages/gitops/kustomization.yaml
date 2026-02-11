@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
 
   - ../../../operators/gitops/argocd/
-  - ../../../operators/gitops/tofu-controller/

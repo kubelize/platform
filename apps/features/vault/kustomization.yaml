@@ -7,8 +7,9 @@ resources:
   - ca-issuer.yaml
   - vault-server-certificate.yaml
   - vault-injector-certificate.yaml
+  - terraform/
 patches:
   - target:
       kind: Application
       name: vault
-    path: ../../../../common/patches/argocd-app-settings.yaml
+    path: ../../../common/patches/argocd-app-settings.yaml

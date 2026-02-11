@@ -1,0 +1,19 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: platform
+  namespace: vault-{{ .environment.stage }}
+spec:
+  interval: 5m
+  url: https://github.com/kubelize/platform  # Replace with your repo URL
+  ref:
+    branch: main  # Or your default branch
+  # For private repositories, add secretRef:
+  # secretRef:
+  #   name: git-credentials
+  
+  # Ignore paths that shouldn't trigger reconciliation
+  ignore: |
+    # Ignore everything except the terraform directory
+    /*
+    !apps/features/vault/terraform/

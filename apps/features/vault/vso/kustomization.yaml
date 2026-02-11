@@ -5,5 +5,5 @@ resources:
 patches:
   - target:
       kind: Application
-      name: cnpg-operator
+      name: vault-secrets-operator
     path: ../../../../common/patches/argocd-app-settings.yaml

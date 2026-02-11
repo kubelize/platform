@@ -1,0 +1,74 @@
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: vault-configuration
+  namespace: vault-{{ .environment.stage }}
+spec:
+  # How often to check for drift
+  interval: 10m
+  
+  # Retry configuration
+  retryInterval: 20s
+  
+  # Path to the Terraform configuration
+  path: ./apps/features/vault/terraform
+  
+  # Source reference - you can use GitRepository, OCIRepository, or Bucket
+  sourceRef:
+    kind: GitRepository
+    name: platform-{{ .environment.stage }}
+    namespace: vault-{{ .environment.stage }}
+  
+  # Number of apply retries
+  approvePlan: auto
+  
+  # Destroy resources when this Terraform object is deleted
+  destroyResourcesOnDeletion: false
+  
+  # Write outputs to a secret
+  writeOutputsToSecret:
+    name: vault-terraform-outputs
+    outputs:
+    - auth_backend_path
+    - policy_names
+    - kv_engine_paths
+    - transit_engine_path
+    - customer_policies
+  
+  # Variables for Terraform
+  vars:
+  - name: vault_address
+    value: "https://vault-active.vault-{{ .environment.stage }}.svc.cluster.local:8200"
+  
+  - name: vault_namespace
+    value: "vault-{{ .environment.stage }}"
+  
+  # Sensitive variables from secrets
+  varsFrom:
+  - kind: Secret
+    name: vault-terraform-credentials-{{ .environment.stage }}
+    varsKeys:
+    - vault_token
+  
+  # Service account for the runner pod
+  serviceAccountName: tf-runner-{{ .environment.stage }}
+  
+  # Runner pod configuration
+  runnerPodTemplate:
+    spec:
+      env:
+      - name: VAULT_CACERT
+        value: /vault-tls/ca.crt
+      
+      volumeMounts:
+      - name: vault-tls
+        mountPath: /vault-tls
+        readOnly: true
+      
+      volumes:
+      - name: vault-tls
+        secret:
+          secretName: vault-server-tls
+          items:
+          - key: ca.crt
+            path: ca.crt

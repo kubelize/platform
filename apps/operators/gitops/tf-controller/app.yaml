@@ -42,4 +42,6 @@ spec:
           enabled: false
         allowedNamespaces:
         - flux-system
+        - vault-prod
+        - vault-test
         allowBreakTheGlass: true

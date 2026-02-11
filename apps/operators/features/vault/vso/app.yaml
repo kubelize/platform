@@ -38,6 +38,7 @@ spec:
           
         defaultAuthMethod:
           enabled: true
+          namespace: "vault-{{ .environment.stage }}"
           kubernetes:
             role: "vault-secrets-operator"
             serviceAccount: "vault-secrets-operator"

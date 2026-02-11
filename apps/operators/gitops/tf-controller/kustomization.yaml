@@ -5,5 +5,5 @@ resources:
 patches:
   - target:
       kind: Application
-      name: cilium
+      name: tf-controller
     path: ../../../../common/patches/argocd-app-settings.yaml

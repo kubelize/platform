@@ -27,3 +27,4 @@ spec:
             uri: http://hubble-ui.kube-system.svc.cluster.local
           - name: vault-test
             uri: https://vault-active.vault-test.svc.cluster.local:8200
+            insecure_skip_verify: true

@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault-secrets-operator
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: "vault-{{ .environment.stage }}"
+  source:
+    repoURL: https://helm.releases.hashicorp.com
+    chart: vault-secrets-operator
+    targetRevision: 0.10.1
+    helm:
+      releaseName: vault-secrets-operator
+      valuesObject:
+        defaultVaultConnection:
+          enabled: true
+          address: "https://vault-active.vault-{{ .environment.stage }}.svc.cluster.local:8200"
+          skipTLSVerify: false
+          caCertSecretRef: "vault-server-tls"
+          
+        controller:
+          replicas: 1
+          
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          
+          # Metrics for Prometheus
+          metrics:
+            enabled: true
+          
+        defaultAuthMethod:
+          enabled: true
+          kubernetes:
+            role: "vault-secrets-operator"
+            serviceAccount: "vault-secrets-operator"
+            tokenAudiences: ["vault"]

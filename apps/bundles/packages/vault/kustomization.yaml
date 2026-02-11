@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 
   - ../../../operators/features/vault/
+  - ../../../operators/features/vault/vso/

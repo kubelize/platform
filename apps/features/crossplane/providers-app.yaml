@@ -85,6 +85,14 @@ spec:
               package: xpkg.upbound.io/crossplane-contrib/provider-helm:v1.1.0
               runtimeConfigRef:
                 name: default
+          - apiVersion: pkg.crossplane.io/v1
+            kind: Provider
+            metadata:
+              name: provider-proxmox-bpg
+            spec:
+              package: xpkg.upbound.io/valkiriaaquaticamendi/provider-proxmox-bpg:v1.3.0
+              runtimeConfigRef:
+                name: default
           # - apiVersion: pkg.crossplane.io/v1
           #   kind: Provider
           #   metadata:

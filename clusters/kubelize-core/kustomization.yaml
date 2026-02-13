@@ -9,6 +9,7 @@ resources:
   - ../../apps/operators/storage/velero/
   - ../../apps/features/cnpg/
   - ../../apps/operators/gitops/tf-controller/
+  - ../../apps/addons/fabric/
 
   - overlays/test/
   # - overlays/prod/

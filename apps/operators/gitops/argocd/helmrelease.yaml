@@ -79,6 +79,11 @@ spec:
             - BackgroundScanReport
             - ClusterBackgroundScanReport
             - UpdateRequest
+          ### Crossplane internal resources excluded to reduce the number of watched events
+          - apiGroups:
+            - "*"
+            kinds:
+            - ProviderConfigUsage
         resource.customizations: |
           pkg.crossplane.io/Provider:
             health.lua: |

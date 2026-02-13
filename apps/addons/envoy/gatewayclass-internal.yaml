@@ -1,0 +1,34 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: internal
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  description: GatewayClass for internal network traffic - accessible only within the internal network
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: internal-proxy-config
+    namespace: envoy-gateway
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: internal-proxy-config
+  namespace: envoy-gateway
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyDeployment:
+        replicas: 2
+        pod:
+          annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/port: "19001"
+      envoyService:
+        type: LoadBalancer
+        # Cilium will automatically assign IPs based on service labels
+        # See ippool-internal.yaml.example for dedicated IP pool setup
+        labels:
+          network-type: internal

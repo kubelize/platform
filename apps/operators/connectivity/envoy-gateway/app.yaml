@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: envoy-gateway
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: envoy-gateway
+  sources:
+    - repoURL: oci://docker.io/envoyproxy/gateway-helm
+      targetRevision: v1.2.4
+      chart: gateway-helm
+      helm:
+        parameters: []
+        valuesObject:
+          createNamespace: true
+          config:
+            envoyGateway:
+              gateway:
+                controllerName: gateway.envoyproxy.io/gatewayclass-controller
+    - repoURL: https://github.com/kubelize/platform
+      targetRevision: main
+      path: apps/operators/connectivity/envoy-gateway/addons

@@ -16,7 +16,7 @@ spec:
       valuesObject:
         resources:
           ##### DeploymentRuntimeConfigs #####
-          - apiVersion: pkg.crossplane.io/v1beta1
+          - apiVersion: pkg.crossplane.io/v1
             kind: DeploymentRuntimeConfig
             metadata:
               name: default
@@ -41,7 +41,7 @@ spec:
                             capabilities:
                               drop:
                                 - ALL
-          - apiVersion: pkg.crossplane.io/v1beta1
+          - apiVersion: pkg.crossplane.io/v1
             kind: DeploymentRuntimeConfig
             metadata:
               name: provider-kubernetes
@@ -74,7 +74,7 @@ spec:
             metadata:
               name: provider-kubernetes
             spec:
-              package: xpkg.upbound.io/crossplane-contrib/provider-kubernetes:v0.15.0
+              package: xpkg.upbound.io/crossplane-contrib/provider-kubernetes:v1.2.0
               runtimeConfigRef:
                 name: provider-kubernetes
           - apiVersion: pkg.crossplane.io/v1
@@ -82,7 +82,7 @@ spec:
             metadata:
               name: provider-helm
             spec:
-              package: xpkg.upbound.io/crossplane-contrib/provider-helm:v1.0.6
+              package: xpkg.upbound.io/crossplane-contrib/provider-helm:v1.1.0
               runtimeConfigRef:
                 name: default
           # - apiVersion: pkg.crossplane.io/v1
@@ -99,22 +99,22 @@ spec:
             metadata:
               name: function-go-templating
             spec:
-              package: xpkg.upbound.io/crossplane-contrib/function-go-templating:v0.8.0
+              package: xpkg.upbound.io/crossplane-contrib/function-go-templating:v0.11.3
               runtimeConfigRef:
                 name: default
-          - apiVersion: pkg.crossplane.io/v1beta1
+          - apiVersion: pkg.crossplane.io/v1
             kind: Function
             metadata:
               name: function-auto-ready
             spec:
-              package: xpkg.upbound.io/crossplane-contrib/function-auto-ready:v0.3.0
+              package: xpkg.upbound.io/crossplane-contrib/function-auto-ready:v0.6.0
               runtimeConfigRef:
                 name: default
-          - apiVersion: pkg.crossplane.io/v1beta1
+          - apiVersion: pkg.crossplane.io/v1
             kind: Function
             metadata:
               name: function-patch-and-transform
             spec:
-              package: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.2.1
+              package: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.10.0
               runtimeConfigRef:
                 name: default

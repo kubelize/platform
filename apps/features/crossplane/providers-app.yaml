@@ -69,6 +69,30 @@ spec:
                             capabilities:
                               drop:
                                 - ALL
+          - apiVersion: pkg.crossplane.io/v1beta1
+            kind: DeploymentRuntimeConfig
+            metadata:
+              name: provider-terraform
+            spec:
+              deploymentTemplate:
+                spec:
+                  selector: {}
+                  template:
+                    spec:
+                      securityContext:
+                        fsGroup: 2000
+                        runAsUser: 2000
+                        runAsGroup: 2000
+                      containers:
+                        - name: package-runtime
+                          securityContext:
+                            runAsUser: 2000
+                            runAsGroup: 2000
+                            allowPrivilegeEscalation: false
+                            capabilities:
+                              drop:
+                                - ALL
+          ##### Providers #####
           - apiVersion: pkg.crossplane.io/v1
             kind: Provider
             metadata:
@@ -88,11 +112,11 @@ spec:
           - apiVersion: pkg.crossplane.io/v1
             kind: Provider
             metadata:
-              name: provider-proxmox-bpg
+              name: provider-terraform
             spec:
-              package: xpkg.upbound.io/valkiriaaquaticamendi/provider-proxmox-bpg:v1.3.0
+              package: xpkg.upbound.io/upbound/provider-terraform:v0.15.0
               runtimeConfigRef:
-                name: default
+                name: provider-terraform
           # - apiVersion: pkg.crossplane.io/v1
           #   kind: Provider
           #   metadata:

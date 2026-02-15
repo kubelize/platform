@@ -30,7 +30,7 @@ spec:
                 config:
                   region: minio
                   s3ForcePathStyle: "true"
-                  s3Url: "http://docker-hana:9000"
+                  s3Url: "http://s3-kaji:9000"
             
             # Volume snapshot location (if needed)
             volumeSnapshotLocation:

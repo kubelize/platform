@@ -41,6 +41,22 @@ spec:
             
             # Use file-level backups (kopia) for PVs
             defaultVolumesToFsBackup: true
+          
+          # Deploy node-agent DaemonSet for file-level backups
+          deployNodeAgent: true
+          
+          # Node-agent configuration
+          nodeAgent:
+            podVolumePath: /var/lib/kubelet/pods
+            privileged: false
+            resources:
+              requests:
+                cpu: 500m
+                memory: 512Mi
+              limits:
+                cpu: 1000m
+                memory: 1Gi
+            tolerations: []
 
           # Credentials for S3 access (will be patched per-cluster)
           credentials:

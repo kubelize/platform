@@ -1,0 +1,8 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: proxmox-snapshots
+  labels:
+    velero.io/csi-volumesnapshot-class: "true"
+driver: csi.proxmox.sinextra.dev
+deletionPolicy: Delete

@@ -5,6 +5,7 @@ resources:
   - ../../apps/bundles/core-r1/
   - ../../apps/operators/storage/csi-driver-nfs/
   - ../../apps/addons/storageclasses/csi-driver-nfs/
+  - ../../apps/operators/storage/csi-snapshot-controller/
   - ../../apps/bundles/packages/crossplane/
   - ../../apps/operators/storage/velero/
   - ../../apps/features/cnpg/

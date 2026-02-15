@@ -23,6 +23,9 @@ spec:
                   name: plugins
 
           configuration:
+            # Enable CSI snapshot support
+            features: EnableCSI
+            
             backupStorageLocation:
               - name: default
                 provider: aws
@@ -32,7 +35,7 @@ spec:
                   s3ForcePathStyle: "true"
                   s3Url: "http://s3-kaji:9000"
             
-            # Volume snapshot location (if needed)
+            # Volume snapshot location for legacy snapshots
             volumeSnapshotLocation:
               - name: default
                 provider: aws

@@ -77,23 +77,6 @@ rules:
   - apiGroups: ["storage.k8s.io"]
     resources: ["volumeattachments/status"]
     verbs: ["patch"]
-  
-  # Snapshot permissions
-  - apiGroups: ["snapshot.storage.k8s.io"]
-    resources: ["volumesnapshots"]
-    verbs: ["get", "list", "watch", "update", "patch"]
-  - apiGroups: ["snapshot.storage.k8s.io"]
-    resources: ["volumesnapshots/status"]
-    verbs: ["get", "list", "patch"]
-  - apiGroups: ["snapshot.storage.k8s.io"]
-    resources: ["volumesnapshotcontents"]
-    verbs: ["get", "list", "watch", "update", "patch", "create", "delete"]
-  - apiGroups: ["snapshot.storage.k8s.io"]
-    resources: ["volumesnapshotcontents/status"]
-    verbs: ["update", "patch"]
-  - apiGroups: ["snapshot.storage.k8s.io"]
-    resources: ["volumesnapshotclasses"]
-    verbs: ["get", "list", "watch"]
 ---
 # Source: proxmox-csi-plugin/templates/node-clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -474,29 +457,6 @@ spec:
             - "--csi-address=unix:///csi/csi.sock"
             - "--timeout=3m"
             - "--handle-volume-inuse-error=false"
-            - "--leader-election"
-          volumeMounts:
-            - name: socket-dir
-              mountPath: /csi
-          resources: 
-            requests:
-              cpu: 10m
-              memory: 16Mi
-        - name: csi-snapshotter
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-              - ALL
-            readOnlyRootFilesystem: true
-            seccompProfile:
-              type: RuntimeDefault
-          image: "registry.k8s.io/sig-storage/csi-snapshotter:v8.2.0"
-          imagePullPolicy: IfNotPresent
-          args:
-            - "-v=5"
-            - "--csi-address=unix:///csi/csi.sock"
-            - "--timeout=5m"
             - "--leader-election"
           volumeMounts:
             - name: socket-dir

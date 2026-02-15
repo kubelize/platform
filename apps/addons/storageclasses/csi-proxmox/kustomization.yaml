@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - storageclass.yaml
   - volumeattributesclass.yaml
-  - volumesnapshotclass.yaml
+  # - volumesnapshotclass.yaml  # Not supported by Proxmox CSI driver yet

@@ -15,8 +15,8 @@ spec:
     # Retain backups for 30 days
     ttl: 720h
     
-    # Include volume snapshots
-    snapshotVolumes: true
+    # Use file-level backup with kopia (not CSI snapshots)
+    defaultVolumesToFsBackup: true
     
     # Backup labels
     metadata:

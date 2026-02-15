@@ -23,8 +23,9 @@ spec:
                   name: plugins
 
           configuration:
-            # Enable CSI snapshot support
-            features: EnableCSI
+            # Note: Proxmox CSI driver doesn't support CSI snapshots yet
+            # Using file-level backups with kopia instead
+            # features: EnableCSI
             
             backupStorageLocation:
               - name: default
@@ -35,12 +36,8 @@ spec:
                   s3ForcePathStyle: "true"
                   s3Url: "http://s3-kaji:9000"
             
-            # Volume snapshot location for legacy snapshots
-            volumeSnapshotLocation:
-              - name: default
-                provider: aws
-                config:
-                  region: minio
+            # Use file-level backups (kopia) for PVs
+            defaultVolumesToFsBackup: true
 
           # Credentials for S3 access (will be patched per-cluster)
           credentials:

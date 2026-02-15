@@ -1,6 +1,6 @@
 - op: replace
   path: "/parameters/server"
-  value: nfs-sora
+  value: nfs-kaji
 - op: replace
   path: "/parameters/share"
   value: /k8s

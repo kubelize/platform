@@ -36,6 +36,9 @@ spec:
                   s3ForcePathStyle: "true"
                   s3Url: "http://s3-kaji:9000"
             
+            # Disable volume snapshot location (not using snapshots)
+            volumeSnapshotLocation: []
+            
             # Use file-level backups (kopia) for PVs
             defaultVolumesToFsBackup: true
 

@@ -4,13 +4,6 @@ metadata:
   name: kyverno-policies
   namespace: argocd
 spec:
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: false
-      allowEmpty: false
-    syncOptions:
-      - CreateNamespace=true
   project: default
   destination:
     server: https://kubernetes.default.svc
@@ -26,7 +19,10 @@ spec:
         validationFailureAction: Audit
         validationFailureActionOverrides:
           all:
-          - action: Enforce
-            namespaceSelector:
-              matchLabels:
-                kyverno-policies-mode: enforce
+          - action: Audit
+            namespaces:
+            - "*system*"
+          # - action: Enforce
+          #   namespaceSelector:
+          #     matchLabels:
+          #       kyverno-policies-mode: enforce

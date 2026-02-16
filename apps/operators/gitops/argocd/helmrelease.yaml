@@ -22,6 +22,7 @@ spec:
       params:
         server.insecure: true
         server.disable.auth: true
+        application.namespaces: "*"
       cm:
         kustomize.buildOptions: --load-restrictor LoadRestrictionsNone
         resource.exclusions: |

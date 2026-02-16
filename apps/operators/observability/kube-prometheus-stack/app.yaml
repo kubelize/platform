@@ -68,6 +68,14 @@ spec:
                     requests:
                       storage: 150Gi
         grafana:
+          persistence:
+            enabled: true
+            storageClassName: "{{ .cluster.settings.defaultStorageClass }}"
+            size: 10Gi
+          sidecar:
+            datasources:
+              enabled: true
+              defaultDatasourceEnabled: true
           grafana.ini:
             auth:
               disable_login_form: true

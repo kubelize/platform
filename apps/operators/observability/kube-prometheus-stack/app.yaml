@@ -76,6 +76,10 @@ spec:
             datasources:
               enabled: true
               defaultDatasourceEnabled: true
+            dashboards:
+              enabled: true
+              defaultDashboardsEnabled: true
+              defaultDashboardsTimezone: utc
           grafana.ini:
             auth:
               disable_login_form: true

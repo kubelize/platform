@@ -1752,7 +1752,7 @@ cluster:
                               Name of the reference to check out; takes precedence over Branch, Tag and SemVer.
 
                               It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description
-                              Examples: "refs/heads/main", "refs/tags/v0.1.0", "refs/pull/420/head", "refs/merge-requests/1/head"
+                              Examples: "refs/heads/prod", "refs/tags/v0.1.0", "refs/pull/420/head", "refs/merge-requests/1/head"
                             type: string
                           semver:
                             description: SemVer tag expression to check out, takes precedence
@@ -2545,7 +2545,7 @@ cluster:
                               Name of the reference to check out; takes precedence over Branch, Tag and SemVer.
 
                               It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description
-                              Examples: "refs/heads/main", "refs/tags/v0.1.0", "refs/pull/420/head", "refs/merge-requests/1/head"
+                              Examples: "refs/heads/prod", "refs/tags/v0.1.0", "refs/pull/420/head", "refs/merge-requests/1/head"
                             type: string
                           semver:
                             description: SemVer tag expression to check out, takes precedence
@@ -9382,7 +9382,7 @@ cluster:
                                       Name of the reference to check out; takes precedence over Branch, Tag and SemVer.
 
                                       It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description
-                                      Examples: "refs/heads/main", "refs/tags/v0.1.0", "refs/pull/420/head", "refs/merge-requests/1/head"
+                                      Examples: "refs/heads/prod", "refs/tags/v0.1.0", "refs/pull/420/head", "refs/merge-requests/1/head"
                                     type: string
                                   semver:
                                     description: SemVer tag expression to check out, takes
@@ -9693,7 +9693,7 @@ cluster:
                                       Name of the reference to check out; takes precedence over Branch, Tag and SemVer.
 
                                       It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description
-                                      Examples: "refs/heads/main", "refs/tags/v0.1.0", "refs/pull/420/head", "refs/merge-requests/1/head"
+                                      Examples: "refs/heads/prod", "refs/tags/v0.1.0", "refs/pull/420/head", "refs/merge-requests/1/head"
                                     type: string
                                   semver:
                                     description: SemVer tag expression to check out, takes

@@ -7,7 +7,7 @@ spec:
   interval: 5m
   url: https://github.com/kubelize/platform  # Replace with your repo URL
   ref:
-    branch: main  # Or your default branch
+    branch: prod  # Or your default branch
   # For private repositories, add secretRef:
   # secretRef:
   #   name: git-credentials

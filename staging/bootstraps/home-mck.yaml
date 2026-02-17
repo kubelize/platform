@@ -49,7 +49,7 @@ cluster:
           interval: 30s
           url: https://github.com/kubelize/platform
           ref:
-            branch: main
+            branch: prod
         ---
         apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
         kind: Kustomization
@@ -78,4 +78,4 @@ cluster:
           interval: 30s
           url: https://github.com/kubelize/kube-secrets
           ref:
-            branch: main
+            branch: prod

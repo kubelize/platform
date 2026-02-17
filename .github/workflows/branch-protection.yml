@@ -1,4 +1,4 @@
-name: Main Branch Protection
+name: prod Branch Protection
 
 on:
   pull_request:

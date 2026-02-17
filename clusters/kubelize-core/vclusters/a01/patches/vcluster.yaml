@@ -273,7 +273,7 @@ spec:
                 command: []
                 # ExtraArgs are additional arguments to pass to the distro binary.
                 extraArgs: []
-              # Env are extra environment variables to use for the main container and NOT the init container.
+              # Env are extra environment variables to use for the prod container and NOT the init container.
               env: []
               # Security options can be used for the distro init container
               securityContext: {}
@@ -583,11 +583,11 @@ spec:
               repository: "loft-sh/vcluster-pro"
               # Tag is the tag of the container image, and is the default version.
               tag: ""
-            # WorkingDir specifies in what folder the main process should get started.
+            # WorkingDir specifies in what folder the prod process should get started.
             workingDir: ""
-            # Command allows you to override the main command.
+            # Command allows you to override the prod command.
             command: []
-            # Args allows you to override the main arguments.
+            # Args allows you to override the prod arguments.
             args: []
             # Env are additional environment variables for the statefulSet container.
             env: []
@@ -685,7 +685,7 @@ spec:
                       topologyKey: topology.kubernetes.io/zone
               # Tolerations are the tolerations to apply to the pod.
               tolerations: []
-            # Probes enables or disables the main container probes.
+            # Probes enables or disables the prod container probes.
             probes:
               # LivenessProbe specifies if the liveness probe for the container should be enabled
               livenessProbe:
@@ -995,7 +995,7 @@ spec:
           
           # Advanced holds advanced network options.
           advanced:
-            # ClusterDomain is the Kubernetes cluster domain to use within the virtual cluster.
+            # Clusterdomain is the Kubernetes cluster domain to use within the virtual cluster.
             clusterDomain: "cluster.local"
             # FallbackHostCluster allows to fallback dns to the host cluster. This is useful if you want to reach host services without
             # any other modification. You will need to provide a namespace for the service, e.g. my-other-service.my-other-namespace
@@ -1170,7 +1170,7 @@ spec:
                 #           sources:
                 #             - repoURL: https://github.com/kubelize/platform
                 #               path: clusters/a01-vcluster/
-                #               targetRevision: main
+                #               targetRevision: prod
                 #           destination:
                 #             server: https://kubernetes.default.svc
                 #             namespace: argocd

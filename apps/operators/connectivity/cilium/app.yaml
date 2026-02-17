@@ -61,5 +61,5 @@ spec:
             ui:
               enabled: true
     - repoURL: https://github.com/kubelize/platform
-      targetRevision: main
+      targetRevision: prod
       path: apps/operators/connectivity/cilium/addons

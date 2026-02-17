@@ -21,6 +21,6 @@ spec:
             defaultIssuerName: letsencrypt-prod-nginx
             defaultIssuerKind: ClusterIssuer
     - repoURL: https://github.com/kubelize/platform
-      targetRevision: main
+      targetRevision: prod
       path: apps/operators/connectivity/cert-manager/addons
     

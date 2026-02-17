@@ -25,4 +25,4 @@ spec:
   interval: 30s
   url: https://github.com/kubelize/platform
   ref:
-    branch: main
+    branch: prod

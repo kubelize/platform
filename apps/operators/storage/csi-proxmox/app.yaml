@@ -10,5 +10,5 @@ spec:
     namespace: proxmox-system
   sources:
     - repoURL: https://github.com/kubelize/platform
-      targetRevision: main
+      targetRevision: prod
       path: apps/operators/storage/csi-proxmox/deploy

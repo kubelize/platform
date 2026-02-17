@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://github.com/kubelize/platform
       path: clusters/kubelize-core
-      targetRevision: main
+      targetRevision: prod
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

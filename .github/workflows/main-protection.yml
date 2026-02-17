@@ -3,7 +3,7 @@ name: Main Branch Protection
 on:
   pull_request:
     branches:
-      - main
+      - prod
 
 jobs:
   check-branch:
@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: Check branch
         run: |
-          if [[ ${GITHUB_HEAD_REF} != int ]]; 
+          if [[ ${GITHUB_HEAD_REF} != test ]]; 
           then
-            echo "Error: Pull request must come from 'int' branch"
+            echo "Error: Pull request must come from 'test' branch"
             exit 1
           fi

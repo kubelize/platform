@@ -10,7 +10,7 @@ spec:
     namespace: nfs-system
   sources:
     - repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
-      targetRevision: v4.9.0
+      targetRevision: 4.13.1
       chart: csi-driver-nfs
       helm:
         valuesObject:

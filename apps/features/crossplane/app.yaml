@@ -10,7 +10,7 @@ spec:
     namespace: crossplane-system
   source:
     repoURL: https://charts.crossplane.io/stable
-    targetRevision: 2.0.0
+    targetRevision: 2.2.0
     chart: crossplane
     helm:
       valuesObject:

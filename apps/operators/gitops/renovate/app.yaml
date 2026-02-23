@@ -13,7 +13,7 @@ spec:
     namespace: renovate
   source:
     repoURL: https://renovatebot.github.io/helm-charts/
-    targetRevision: 39.164.0
+    targetRevision: 39.264.0
     chart: renovate
     helm:
       parameters: []

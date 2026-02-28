@@ -1,0 +1,60 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kyverno:generate-cilium-network-policies
+  labels:
+    rbac.kyverno.io/aggregate-to-background-controller: "true"
+rules:
+  - apiGroups:
+      - cilium.io
+    resources:
+      - ciliumnetworkpolicies
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: create-default-deny-cnps
+spec:
+  validationFailureAction: Enforce
+  background: false
+  rules:
+    - name: create-default-deny-cnp
+      skipBackgroundRequests: true
+      match:
+        any:
+          - resources:
+              kinds:
+                - Namespace
+              names:
+                - a01*
+                - a02*
+                - b01*
+                - b02*
+                - qu3*
+                - t99*
+              operations:
+                - CREATE
+      generate:
+        apiVersion: cilium.io/v2
+        kind: CiliumNetworkPolicy
+        name: default-deny
+        namespace: "{{ request.object.metadata.name }}"
+        synchronize: true
+        data:
+          metadata:
+            labels:
+              app.kubernetes.io/managed-by: kyverno
+          spec:
+            description: "Default deny for all pods in the namespace."
+            endpointSelector: {}
+            enableDefaultDeny:
+              ingress: true
+              egress: true

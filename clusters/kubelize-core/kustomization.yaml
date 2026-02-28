@@ -5,13 +5,14 @@ resources:
   - ../../apps/bundles/core-r1/
   - ../../apps/operators/storage/csi-driver-nfs/
   - ../../apps/addons/storageclasses/csi-driver-nfs/
-  # - ../../apps/operators/storage/csi-snapshot-controller/  # Not needed - Proxmox CSI doesn't support snapshots
   - ../../apps/bundles/packages/crossplane/
   - ../../apps/operators/storage/velero/
   - ../../apps/features/cnpg/
   - ../../apps/operators/gitops/tf-controller/
   - ../../apps/addons/fabric/
   - ../../apps/operators/gitops/renovate/
+  - ../../apps/operators/security/kyverno/
+  - ../../apps/addons/kyverno-policies/
 
   - overlays/test/
   # - overlays/prod/

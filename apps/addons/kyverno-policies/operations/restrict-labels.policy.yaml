@@ -54,10 +54,10 @@ spec:
         pattern:
           metadata:
             =(labels):
-              "X(bedag_alerting_category)": "?*"
+              "X(alerting_category)": "?*"
               # Additional reserved labels can be added as follows:
-              # "X(bedag.ch/type)": "?*"
+              # "X(kubelize.io/type)": "?*"
               # To disallow with a regex pattern, use the following syntax:
-              # "X(*bedag*)" : "?*"
+              # "X(*kubelize.io*)" : "?*"
               # Required labels can be added as follows:
-              # "bedag.ch/created-by": "customer"
+              # "kubelize.io/created-by": "customer"

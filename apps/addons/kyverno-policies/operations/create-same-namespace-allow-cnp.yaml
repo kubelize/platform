@@ -1,0 +1,44 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: create-namespace-allow-cnps
+spec:
+  validationFailureAction: Enforce
+  background: false
+  rules:
+    - name: create-namespace-allow-cnp
+      skipBackgroundRequests: true
+      match:
+        any:
+          - resources:
+              kinds:
+                - Namespace
+              names:
+                - a01*
+                - a02*
+                - b01*
+                - b02*
+                - qu3*
+                - t99*
+      generate:
+        apiVersion: cilium.io/v2
+        kind: CiliumNetworkPolicy
+        name: allow-same-namespace
+        namespace: '{{ print "{{ request.object.metadata.name }}" }}'
+        generateExisting: true
+        synchronize: true
+        data:
+          metadata:
+            labels:
+              app.kubernetes.io/managed-by: kyverno
+          spec:
+            description: "Allow pod traffic within the same namespace."
+            endpointSelector: {}
+            ingress:
+              - fromEndpoints:
+                  - matchLabels:
+                      k8s:io.kubernetes.pod.namespace: '{{ print "{{ request.object.metadata.name }}" }}'
+            egress:
+              - toEndpoints:
+                  - matchLabels:
+                      k8s:io.kubernetes.pod.namespace: '{{ print "{{ request.object.metadata.name }}" }}'

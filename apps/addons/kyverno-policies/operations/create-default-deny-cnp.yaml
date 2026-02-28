@@ -46,7 +46,7 @@ spec:
         apiVersion: cilium.io/v2
         kind: CiliumNetworkPolicy
         name: default-deny
-        namespace: "{{ request.object.metadata.name }}"
+        namespace: '{{ print "{{ request.object.metadata.name }}" }}'
         synchronize: true
         data:
           metadata:

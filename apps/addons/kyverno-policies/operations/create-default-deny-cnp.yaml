@@ -40,8 +40,6 @@ spec:
                 - b02*
                 - qu3*
                 - t99*
-              operations:
-                - CREATE
       generate:
         apiVersion: cilium.io/v2
         kind: CiliumNetworkPolicy
@@ -56,6 +54,8 @@ spec:
           spec:
             description: "Default deny for all pods in the namespace."
             endpointSelector: {}
+            ingress: []
+            egress: []
             enableDefaultDeny:
               ingress: true
               egress: true

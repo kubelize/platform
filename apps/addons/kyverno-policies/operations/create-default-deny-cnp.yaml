@@ -3,6 +3,7 @@ kind: ClusterRole
 metadata:
   name: kyverno:generate-cilium-network-policies
   labels:
+    rbac.kyverno.io/aggregate-to-admission-controller: "true"
     rbac.kyverno.io/aggregate-to-background-controller: "true"
 rules:
   - apiGroups:
@@ -11,12 +12,10 @@ rules:
       - ciliumnetworkpolicies
     verbs:
       - create
-      - delete
       - get
       - list
       - patch
       - update
-      - watch
 ---
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy

@@ -19,7 +19,7 @@ spec:
           enabled: true
           address: "https://vault-active.vault-{{ .environment.stage }}.svc.cluster.local:8200"
           skipTLSVerify: false
-          caCertSecretRef: "vault-server-tls"
+          caCertSecret: "vault-server-tls"
           
         controller:
           replicas: 1

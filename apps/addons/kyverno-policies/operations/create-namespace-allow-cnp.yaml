@@ -24,7 +24,7 @@ spec:
         apiVersion: cilium.io/v2
         kind: CiliumNetworkPolicy
         name: allow-same-namespace
-        namespace: '{{ print "{{ request.object.metadata.name }}" }}'
+        namespace: '{{`{{ request.object.metadata.name }}`}}'
         generateExisting: true
         synchronize: true
         data:
@@ -37,8 +37,8 @@ spec:
             ingress:
               - fromEndpoints:
                   - matchLabels:
-                      k8s:io.kubernetes.pod.namespace: '{{ print "{{ request.object.metadata.name }}" }}'
+                      k8s:io.kubernetes.pod.namespace: '{{`{{ request.object.metadata.name }}`}}'
             egress:
               - toEndpoints:
                   - matchLabels:
-                      k8s:io.kubernetes.pod.namespace: '{{ print "{{ request.object.metadata.name }}" }}'
+                      k8s:io.kubernetes.pod.namespace: '{{`{{ request.object.metadata.name }}`}}'

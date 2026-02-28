@@ -54,8 +54,14 @@ spec:
           spec:
             description: "Default deny for all pods in the namespace."
             endpointSelector: {}
-            ingress: []
-            egress: []
+            ingressDeny:
+              - fromEntities:
+                  - cluster
+                  - host
+                  - world
+            egressDeny:
+              - toEntities:
+                  - all
             enableDefaultDeny:
               ingress: true
               egress: true
